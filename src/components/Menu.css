@@ -1,0 +1,37 @@
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100px; /* Position it right below the navbar */
+  right: 20px; /* Align it with the right side of the navbar */
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  z-index: 1000;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none; /* Remove border for last item */
+}
+
+.dropdown-menu li a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0; /* Add hover effect */
+}
