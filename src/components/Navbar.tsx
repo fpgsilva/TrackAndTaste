@@ -43,8 +43,10 @@ export function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
-          <img className="navbar-icon" src="logo.png" alt="Site Logo" />
-          TRACK AND TASTE
+          <Link to="/" className="navbar-logo">
+            <img className="navbar-icon" src="logo.png" alt="Site Logo" />
+              TRACK AND TASTE
+          </Link>
         </div>
 
         <div className="nav-right">
