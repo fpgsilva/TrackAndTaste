@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Navbar.css";
 import "./Menu.css";
+import { Link } from "react-router-dom";
 
-const Navbar: React.FC = () => {
+export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
@@ -51,7 +52,7 @@ const Navbar: React.FC = () => {
         <div className="dropdown-menu">
           <ul>
             <li>
-              <a href="/recipe-book.html">My Recipe Book</a>
+              <Link to="/Recipebook">Recipe Book</Link>
             </li>
             <li>
               <a href="/add-recipe.html">Add Recipe</a>
@@ -73,6 +74,6 @@ const Navbar: React.FC = () => {
       )}
     </nav>
   );
-};
+}
 
 export default Navbar;
