@@ -1,0 +1,35 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: fixed;
+    margin: 10px;
+    top: 100px;
+    padding: 0.5rem 1rem;
+}
+  
+.search-input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 80vw;
+}
+
+input {
+    background-image: url("https://cdn3.iconfinder.com/data/icons/basic-web-elements/48/search-512.png");
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+input[type="search"] {
+    padding: 10px 10px 10px 45px;
+}
+
+
+input[type="search"]:focus {
+    box-shadow: 0 0 3px 0 rgba(80, 207, 76, 0.7);
+    border-color: rgb(80, 207, 76, 0.7);
+    outline: none;
+}

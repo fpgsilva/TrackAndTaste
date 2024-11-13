@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
 import "./Menu.css";
 import { Link } from "react-router-dom";
@@ -6,11 +6,39 @@ import { Link } from "react-router-dom";
 export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null); // Reference to dropdown menu
+  const menuIconRef = useRef<HTMLDivElement>(null); // Reference to menu icon
 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState); // Toggle menu open/close
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    // Check if the click is outside the dropdown and menu icon
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node) &&
+      menuIconRef.current &&
+      !menuIconRef.current.contains(event.target as Node)
+    ) {
+      setIsMenuOpen(false); // Close the menu
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener when the menu is open
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      // Clean up event listener on component unmount
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+  
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -37,7 +65,7 @@ export function Navbar() {
           )}
 
           {/* Hamburger Menu Icon */}
-          <div className="menu-icon" onClick={toggleMenu}>
+          <div className="menu-icon" onClick={toggleMenu} ref={menuIconRef}>
             <div className="hamburger">
               <span></span>
               <span></span>
@@ -49,7 +77,7 @@ export function Navbar() {
 
       {/* Conditional Rendering of Dropdown Menu */}
       {isMenuOpen && (
-        <div className="dropdown-menu">
+        <div className="dropdown-menu" ref={dropdownRef}>
           <ul>
             <li>
               <Link to="/Recipebook">Recipe Book</Link>
