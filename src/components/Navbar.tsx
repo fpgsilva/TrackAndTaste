@@ -54,19 +54,19 @@ const Navbar: React.FC = () => {
               <a href="/recipe-book.html">My Recipe Book</a>
             </li>
             <li>
-              <a href="#profile">Add Recipe</a>
+              <a href="/add-recipe.html">Add Recipe</a>
             </li>
             <li>
-              <a href="#settings">Calorie Track</a>
+              <a href="/calorie-track.html">Calorie Track</a>
             </li>
             <li>
-              <a href="#n">Nutritionist</a>
+              <a href="/Nutritionist.html">Nutritionist</a>
             </li>
             <li>
-              <a href="#p">Profile</a>
+              <a href="/Profile.html">Profile</a>
             </li>
             <li>
-              <a href="#s">Settings</a>
+              <a href="/Settings.html">Settings</a>
             </li>
           </ul>
         </div>
