@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import "./Menu.css";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -51,7 +52,7 @@ const Navbar: React.FC = () => {
         <div className="dropdown-menu">
           <ul>
             <li>
-              <a href="/recipe-book.html">My Recipe Book</a>
+              <Link to="/recipe-book">My Recipe Book</Link>
             </li>
             <li>
               <a href="#profile">Add Recipe</a>
