@@ -1,7 +1,7 @@
 /* Main navbar styles */
 .navbar {
-  background: linear-gradient(90deg, rgb(80, 207, 76) 15%, rgb(26, 23, 23) 70%);
-  height: 100px;
+  background: linear-gradient(90deg, rgb(26, 23, 23) 20%, rgb(80, 207, 76) 70%);
+  height: 100px;/*90deg, rgb(80, 207, 76) 15%, rgb(26, 23, 23) 70%*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,3 +81,15 @@
   margin-right: 15px; /* Spacing between Log In and menu icon */
 }
 
+.user-icon {
+  width: 40px;  /* Fixed width for the user icon */
+  height: 40px; /* Fixed height for the user icon */
+  border-radius: 50%;  /* Optional: makes the icon circular */
+  object-fit: cover;   /* Ensures the image fits within the square */
+  margin-left: 10px;   /* Optional: adds space between the icon and other elements */
+}
+
+.logout-text{
+  cursor: pointer;
+  font-weight: bold;
+}
