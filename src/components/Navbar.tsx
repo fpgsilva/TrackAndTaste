@@ -4,7 +4,17 @@ import "./Menu.css";
 import { Link } from "react-router-dom";
 
 export function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const savedLoginState = localStorage.getItem('isLoggedIn');
+    return savedLoginState ? JSON.parse(savedLoginState) : false;  // Convert string to boolean
+  });
+
+  useEffect(() => {
+    localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));  // Convert boolean to string
+  }, [isLoggedIn]); // Only update localStorage when isLoggedIn changes
+
+
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null); // Reference to dropdown menu
   const menuIconRef = useRef<HTMLDivElement>(null); // Reference to menu icon

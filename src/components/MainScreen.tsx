@@ -6,7 +6,7 @@ const MainScreen = () => {
   return (
 
       <div className="version-description">
-        <p>v 0.0.2</p>
+        <p>v 0.0.3</p>
       </div>
   );
 };
