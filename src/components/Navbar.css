@@ -25,6 +25,16 @@
   font-size: 2rem;
   display: flex;
   align-items: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.navbar-logo:hover {
+  color: #fff;
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
+.navbar-logo:active {
+  transform: scale(0.98);
 }
 
 .navbar-icon {
@@ -73,6 +83,7 @@
 
 .login-button {
   background-color: #fff;
+  color: rgb(26, 23, 23);
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
