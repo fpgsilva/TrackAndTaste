@@ -1,19 +1,21 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./SearchBar.css";
 
 const SearchBar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-
+  const navigate = useNavigate();
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      // Logic to handle search can go here (e.g., API call or passing the searchQuery to a parent component)
-      window.location.href = `/Search-results.html?query=${encodeURIComponent(searchQuery)}`;
+      console.log(searchQuery)
+      navigate("/SearchResults", { state: { query: searchQuery } });
     } else {
       console.log("Please enter a search query.");
+      alert("Please enter a search query.");
     }
   };
 
