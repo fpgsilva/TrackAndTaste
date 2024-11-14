@@ -25,6 +25,11 @@ export function Navbar() {
     }
   };
 
+  const logOut = () =>{
+    setIsLoggedIn(false)
+    toggleMenu()
+  }
+
   useEffect(() => {
     // Add event listener when the menu is open
     if (isMenuOpen) {
@@ -51,12 +56,13 @@ export function Navbar() {
 
         <div className="nav-right">
           {isLoggedIn ? (
-            <button
-              onClick={() => setIsLoggedIn(false)}
-              className="login-button"
-            >
-              Log Out
-            </button>
+            <Link to="/Profile">
+            <img 
+            className='user-icon' 
+              src='user-icon.png'
+              alt='User'
+            />
+            </Link>
           ) : (
             <button
               onClick={() => setIsLoggedIn(true)}
@@ -79,27 +85,16 @@ export function Navbar() {
 
       {/* Conditional Rendering of Dropdown Menu */}
       {isMenuOpen && (
-        <div className="dropdown-menu" ref={dropdownRef}>
-          <ul>
-            <li>
-              <Link to="/Recipebook">Recipe Book</Link>
-            </li>
-            <li>
-              <a href="/add-recipe.html">Add Recipe</a>
-            </li>
-            <li>
-              <a href="/calorie-track.html">Calorie Track</a>
-            </li>
-            <li>
-              <a href="/Nutritionist.html">Nutritionist</a>
-            </li>
-            <li>
-              <a href="/Profile.html">Profile</a>
-            </li>
-            <li>
-              <a href="/Settings.html">Settings</a>
-            </li>
-          </ul>
+        <div className="dropdown-menu">
+           <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/Recipebook">Recipe Book</Link></li>
+            <li><Link to="/AddRecipe">Add Recipe</Link></li>
+            <li><Link to="/CalorieTracker">Calorie Tracker</Link></li>
+
+            <li><Link to="/Settings">Settings</Link></li>
+            {isLoggedIn && <li className="logout-text" onClick={() => logOut()}>Logout</li>} {/* Trigger logout */}            {/* Add other links as needed */}
+            </ul>
         </div>
       )}
     </nav>
