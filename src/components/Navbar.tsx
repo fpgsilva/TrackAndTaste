@@ -53,7 +53,7 @@ export function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isMenuOpen]);
-  
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -95,14 +95,14 @@ export function Navbar() {
 
       {/* Conditional Rendering of Dropdown Menu */}
       {isMenuOpen && (
-        <div className="dropdown-menu">
+        <div className="dropdown-menu" ref={dropdownRef}>
            <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/Recipebook">Recipe Book</Link></li>
-            <li><Link to="/AddRecipe">Add Recipe</Link></li>
-            <li><Link to="/CalorieTracker">Calorie Tracker</Link></li>
+            <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+            <li><Link to="/Recipebook" onClick={toggleMenu}>Recipe Book</Link></li>
+            <li><Link to="/AddRecipe" onClick={toggleMenu}>Add Recipe</Link></li>
+            <li><Link to="/CalorieTracker" onClick={toggleMenu}>Calorie Tracker</Link></li>
 
-            <li><Link to="/Settings">Settings</Link></li>
+            <li><Link to="/Settings" onClick={toggleMenu}>Settings</Link></li>
             {isLoggedIn && <li className="logout-text" onClick={() => logOut()}>Logout</li>} {/* Trigger logout */}            {/* Add other links as needed */}
             </ul>
         </div>
