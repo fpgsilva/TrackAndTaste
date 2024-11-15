@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import SearchBar from "../components/SearchBar";
+import "./SearchResults.css";
 
 export function SearchResults() {
   const location = useLocation();
@@ -33,20 +35,24 @@ export function SearchResults() {
   }, [recipes, query]);
 
   return (
-    <div>
+    <div className="search-results">
+      <SearchBar />
       <h2>Search Results for "{query}"</h2>
-      {results.length > 0 ? (
-        <ul>
-          {results.map((recipe, index) => (
-            <li key={index}>
-              <h3>{recipe.title}</h3>
-              <p>{recipe.instructions}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No results found.</p>
-      )}
+      <div className="scroll-container">
+        {results.length > 0 ? (
+          <div className="recipe-grid">
+            {results.map((recipe) => (
+              <div className="recipe-card" key={recipe.id}>
+                <h3>{recipe.title}</h3>
+                <p><strong>Ingredients:</strong> {recipe.ingredients.join(", ")}</p>
+                <p><strong>Instructions:</strong> {recipe.instructions}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No results found.</p>
+        )}
+      </div>
     </div>
   );
 }
