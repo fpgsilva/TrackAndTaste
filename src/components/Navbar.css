@@ -131,6 +131,7 @@
 }
 
 .logout-text{
+  color: black;
   cursor: pointer;
   font-weight: bold;
 }
