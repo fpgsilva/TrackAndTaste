@@ -74,6 +74,14 @@
   align-items: center;
 }
 
+.hamburger:hover {
+  transform: scale(1.02);
+}
+
+.hamburger:active {
+  transform: scale(0.98);
+}
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -90,6 +98,19 @@
   border-radius: 5px;
   cursor: pointer;
   margin-right: 15px; /* Spacing between Log In and menu icon */
+  transition: transform 0.3s ease, opacity 0.2s ease; /* Smoothens the hover effect */
+}
+
+.login-button:hover {
+  transform: scale(1.02); /* Scales the button on hover */
+}
+
+.login-button:active {
+  transform: scale(0.95); /* Scales the button on click */
+}
+
+.login-button.hide {
+  transform: scale(0); /* Hides the button when the user is logged in */
 }
 
 .user-icon {
@@ -98,9 +119,19 @@
   border-radius: 50%;  /* Optional: makes the icon circular */
   object-fit: cover;   /* Ensures the image fits within the square */
   margin-left: 10px;   /* Optional: adds space between the icon and other elements */
+  margin-right: 35px;
+  transition: display 0.3s ease;   
+}
+
+.user-icon:hover {
+  transform: scale(1.02); /* scales the icon on hover */
+}
+.user-icon:active {
+  transform: scale(0.98); /* scales the icon on click */
 }
 
 .logout-text{
+  color: black;
   cursor: pointer;
   font-weight: bold;
 }

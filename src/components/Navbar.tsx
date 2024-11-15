@@ -54,6 +54,19 @@ export function Navbar() {
     };
   }, [isMenuOpen]);
 
+  const [isHiding, setIsHiding] = useState(false);
+
+  const handleLogin = () => {
+    setIsHiding(true);
+  };
+
+  const handleTransitionEnd = () => {
+    if (isHiding) {
+      setIsLoggedIn(true);
+      setIsHiding(false);
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -75,8 +88,9 @@ export function Navbar() {
             </Link>
           ) : (
             <button
-              onClick={() => setIsLoggedIn(true)}
-              className="login-button"
+              onClick={handleLogin}
+              className={`login-button ${isHiding ? 'hide' : ''}`}
+              onTransitionEnd={handleTransitionEnd}
             >
               Log In
             </button>
