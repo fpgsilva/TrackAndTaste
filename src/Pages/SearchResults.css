@@ -2,13 +2,43 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    padding: 20px;
     box-sizing: border-box;
     overflow: hidden;
 }
 
 h2 {
     margin-top: 200px; 
+    padding: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    right: 20px;
+    top: 110px;
+}
+
+.filter-dropdown {
+    margin: 10px;
+    padding: 10px 10px 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 150px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+  
+.filter-dropdown:focus {
+    box-shadow: 0 0 3px 0 rgba(80, 207, 76, 0.7);
+    border-color: rgb(80, 207, 76, 0.7);
+    outline: none;
+}
+  
+.filter-dropdown:hover {
+    box-shadow: 0 0 3px 0 rgba(80, 207, 76, 0.5);
 }
 
 .scroll-container {
@@ -16,6 +46,7 @@ h2 {
     overflow-y: auto;
     padding-right: 10px;
     margin-top: 10px;
+    padding: 20px;
     box-sizing: border-box;
 }
 
