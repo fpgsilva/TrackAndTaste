@@ -1,0 +1,155 @@
+/* General Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+/* Full-Screen Form */
+.add-recipe {
+  display: flex;
+  flex-direction: column;
+  width: 180%; /* Full width of the screen */
+  margin: 0; /* No outer margin */
+  padding: 20px 40px; /* Inner padding for spacing */
+  background: #ffffff;
+  
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Title Styling */
+.add-recipe h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form Styling */
+.recipe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1; /* Take up remaining space */
+}
+/* Recipe Details Full Row */
+.recipe-details {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.recipe-details label {
+  flex: 1;
+  min-width: 300px; /* Prevent fields from shrinking too much */
+  max-width: 100%; /* Allow fields to stretch */
+}
+
+/* Inputs Styling */
+.recipe-form input,
+.recipe-form select,
+.recipe-form textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #f9f9f9;
+  transition: border-color 0.3s;
+}
+
+.recipe-form input:focus,
+.recipe-form select:focus,
+.recipe-form textarea:focus {
+  border-color: #5cb85c;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Add Images Section */
+.add-images {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.add-images .image-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.add-images .add-image {
+  width: 60px;
+  height: 60px;
+  border: 2px dashed #5cb85c;
+  border-radius: 10px;
+  background: #f9f9f9;
+  font-size: 24px;
+  font-weight: bold;
+  color: #5cb85c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Buttons Styling */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.buttons .btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  color: white;
+}
+
+.buttons .btn.delete {
+  background: #e74c3c;
+}
+
+.buttons .btn.delete:hover {
+  background: #c0392b;
+}
+
+.buttons .btn.continue {
+  background: #f39c12;
+}
+
+.buttons .btn.continue:hover {
+  background: #e67e22;
+}
+
+.buttons .btn.create {
+  background: #27ae60;
+}
+
+.buttons .btn.create:hover {
+  background: #2ecc71;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
