@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import "./SearchResults.css";
 
+
 export function SearchResults() {
   const location = useLocation();
   const query = location.state?.query.toLowerCase() || "";

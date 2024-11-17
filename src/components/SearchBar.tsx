@@ -11,7 +11,7 @@ const SearchBar: React.FC = () => {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      console.log(searchQuery)
+      console.log(searchQuery);
       navigate("/SearchResults", { state: { query: searchQuery } });
     } else {
       console.log("Please enter a search query.");

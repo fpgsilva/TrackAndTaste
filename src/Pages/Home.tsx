@@ -5,13 +5,12 @@ import SearchBar from "../components/SearchBar";
 export function Home() {
   return (
     <>
-    <div>
+      <div>
         <SearchBar />
       </div>
       <div>
         <Navbar />
       </div>
-      
       <div>
         <MainScreen />
       </div>
