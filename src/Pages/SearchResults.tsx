@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function SearchResults() {
   const location = useLocation();

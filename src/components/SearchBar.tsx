@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./SearchBar.css";
 
 const SearchBar: React.FC = () => {
@@ -11,7 +11,7 @@ const SearchBar: React.FC = () => {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      console.log(searchQuery)
+      console.log(searchQuery);
       navigate("/SearchResults", { state: { query: searchQuery } });
     } else {
       console.log("Please enter a search query.");

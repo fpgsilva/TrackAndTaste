@@ -1,0 +1,4 @@
+[
+   { "id": 0, "title": "Spaghetti Bolognese", "ingredients": ["pasta", "beef", "tomato sauce"], "instructions": "Boil pasta, cook beef, mix with sauce." },
+   { "id": 1, "title": "Pancakes", "ingredients": ["flour", "milk", "egg"], "instructions": "Mix ingredients and cook on a griddle." }
+]
