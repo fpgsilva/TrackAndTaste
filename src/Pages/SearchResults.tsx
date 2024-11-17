@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import "./SearchResults.css";
+import Navbar from "../components/Navbar";
 
 
 export function SearchResults() {
@@ -106,6 +107,7 @@ export function SearchResults() {
           <p>No results found.</p>
         )}
       </div>
+      <Navbar />
     </div>
   );
 }

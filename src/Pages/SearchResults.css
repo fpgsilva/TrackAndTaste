@@ -29,6 +29,9 @@ h2 {
     width: 150px;
     cursor: pointer;
     transition: box-shadow 0.2s, border-color 0.2s;
+    position: fixed;
+    top: 14.5vh;
+    right: inherit;
 }
   
 .filter-dropdown:focus {
@@ -61,6 +64,7 @@ h2 {
 .recipe-card {
     border: 1px solid #ccc;
     border-radius: 8px;
+    width: 45vw;
     padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #fff;
