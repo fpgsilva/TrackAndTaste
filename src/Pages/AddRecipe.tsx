@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddRecipe.css";
 
 export function AddRecipe() {
   const navigate = useNavigate();
+  const stepsContainerRef = useRef<HTMLDivElement>(null); // Reference to the steps container
   const [recipe, setRecipe] = useState({
     title: "",
     time: "",
@@ -12,7 +13,6 @@ export function AddRecipe() {
     description: "",
     ingredients: "",
     steps: [] as string[], // Store steps as an array of strings
-    stepCount: 1, // Number of steps (default to 1)
   });
 
   const handleChange = (
@@ -21,18 +21,7 @@ export function AddRecipe() {
     >
   ) => {
     const { name, value } = e.target;
-
-    // Update steps if stepCount changes
-    if (name === "stepCount") {
-      const stepCount = parseInt(value) || 1; // Ensure stepCount is at least 1
-      setRecipe({
-        ...recipe,
-        stepCount,
-        steps: Array(stepCount).fill(""), // Reset steps array to match step count
-      });
-    } else {
-      setRecipe({ ...recipe, [name]: value });
-    }
+    setRecipe({ ...recipe, [name]: value });
   };
 
   const handleStepChange = (index: number, value: string) => {
@@ -41,14 +30,15 @@ export function AddRecipe() {
     setRecipe({ ...recipe, steps });
   };
 
-  const handleCreate = () => {
-    alert("Recipe Created!"); // Update with modal or toast notification later
+  const handleAddStep = () => {
+    setRecipe((prev) => ({
+      ...prev,
+      steps: [...prev.steps, ""], // Add a new empty step
+    }));
   };
 
-  const handleContinueLater = () => {
-    alert("Recipe Saved for Later!");
-  };
-
+  const handleCreate = () => alert("Recipe Created!");
+  const handleContinueLater = () => alert("Recipe Saved for Later!");
   const handleDelete = () => {
     setRecipe({
       title: "",
@@ -58,18 +48,19 @@ export function AddRecipe() {
       description: "",
       ingredients: "",
       steps: [],
-      stepCount: 1,
     });
   };
 
   return (
     <div className="add-recipe">
-      {/* Back button */}
-      <button className="back-button" onClick={() => navigate("/")}>
-        ← Back
-      </button>
+      {/* Top left Go Back button */}
+      <div className="back-container">
+        <button className="back-button" onClick={() => navigate("/")}>
+          ← Go Back
+        </button>
+      </div>
 
-      <h1>Create New Recipe</h1>
+      <h1 className="recipe-header">Create New Recipe</h1>
 
       <form className="recipe-form">
         {/* Title */}
@@ -143,45 +134,26 @@ export function AddRecipe() {
           ></textarea>
         </label>
 
-        {/* Number of Steps */}
-        <label>
-          <span>Number of Steps:</span>
-          <input
-            type="number"
-            name="stepCount"
-            min="1"
-            value={recipe.stepCount}
-            onChange={handleChange}
-            placeholder="e.g., 3"
-          />
-        </label>
-
         {/* Steps */}
-        <div>
+        <div ref={stepsContainerRef} className="steps-container">
           <span>Steps:</span>
-          {Array.from({ length: recipe.stepCount }).map((_, index) => (
+          {recipe.steps.map((step, index) => (
             <div key={index}>
               <textarea
                 name={`step-${index}`}
-                value={recipe.steps[index] || ""}
+                value={step}
                 onChange={(e) => handleStepChange(index, e.target.value)}
                 placeholder={`Step ${index + 1}`}
               ></textarea>
             </div>
           ))}
-        </div>
-
-        {/* Add Images Section */}
-        <div className="add-images">
-          <span>Add Images:</span>
-          <div className="image-buttons">
-            <button type="button" className="add-image">
-              +
-            </button>
-            <button type="button" className="add-image">
-              +
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={handleAddStep}
+            className="btn add-step"
+          >
+            Add Step
+          </button>
         </div>
 
         {/* Buttons */}

@@ -1,110 +1,135 @@
-/* General Styling */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f4f4f4;
-}
-
-/* Full-Screen Form */
+/* Main container for the Add Recipe page */
 .add-recipe {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 20px 40px;
+    padding-top: 80px; /* Ensure the section is below the fixed navbar */
+    background: #ffffff;
+    
+}
+.recipe-header {
+  color: rgb(0, 0, 0);
+}
+
+/* Headings for sections */
+.add-recipe h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Input fields styling */
+.add-recipe input,
+.add-recipe textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    
+}
+
+/* Input fields hover and focus effects */
+.add-recipe input:focus,
+.add-recipe textarea:focus {
+    border-color: #999;
+    background: #fff;
+}
+
+/* Add Step button styling */
+.btn.add-step {
+    background: #f9f9f9; /* Match input background */
+    color: #333; /* Text color */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Hover effect for Add Step button */
+.btn.add-step:hover {
+    background: #eaeaea; /* Slightly darker hover effect */
+    border-color: #aaa;
+}
+
+/* Add Step button alignment */
+.add-step-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+/* Steps list container */
+.steps-list {
+    margin-top: 20px;
+}
+
+.steps-list li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Submit button styling */
+.btn.submit-recipe {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for Submit button */
+.btn.submit-recipe:hover {
+    background: #0056b3;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .add-recipe {
+        padding: 10px 20px;
+        padding-top: 100px; /* Adjust spacing for mobile view */
+    }
+
+    .btn.add-step,
+    .btn.submit-recipe {
+        width: 100%; /* Full-width buttons on smaller screens */
+        text-align: center;
+    }
+}
+
+/* Fade-in animation keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.buttons {
   display: flex;
-  flex-direction: column;
-  width: 180%; /* Full width of the screen */
-  margin: 0; /* No outer margin */
-  padding: 20px 40px; /* Inner padding for spacing */
-  background: #ffffff;
-  
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Title Styling */
-.add-recipe h1 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* Form Styling */
-.recipe-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex-grow: 1; /* Take up remaining space */
-}
-/* Recipe Details Full Row */
-.recipe-details {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.recipe-details label {
-  flex: 1;
-  min-width: 300px; /* Prevent fields from shrinking too much */
-  max-width: 100%; /* Allow fields to stretch */
-}
-
-/* Inputs Styling */
-.recipe-form input,
-.recipe-form select,
-.recipe-form textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: #f9f9f9;
-  transition: border-color 0.3s;
-}
-
-.recipe-form input:focus,
-.recipe-form select:focus,
-.recipe-form textarea:focus {
-  border-color: #5cb85c;
-  outline: none;
-}
-
-textarea {
-  resize: vertical;
-}
-
-/* Add Images Section */
-.add-images {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   margin-top: 20px;
 }
 
-.add-images .image-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.add-images .add-image {
-  width: 60px;
-  height: 60px;
-  border: 2px dashed #5cb85c;
-  border-radius: 10px;
-  background: #f9f9f9;
-  font-size: 24px;
-  font-weight: bold;
-  color: #5cb85c;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Buttons Styling */
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
 
 .buttons .btn {
   flex: 1;
@@ -117,31 +142,24 @@ textarea {
   text-align: center;
   color: white;
 }
-
 .buttons .btn.delete {
   background: #e74c3c;
 }
-
 .buttons .btn.delete:hover {
   background: #c0392b;
 }
-
 .buttons .btn.continue {
   background: #f39c12;
 }
-
 .buttons .btn.continue:hover {
   background: #e67e22;
 }
-
 .buttons .btn.create {
   background: #27ae60;
 }
-
 .buttons .btn.create:hover {
   background: #2ecc71;
 }
-
 /* Animations */
 @keyframes fadeIn {
   from {
@@ -153,3 +171,23 @@ textarea {
     transform: translateY(0);
   }
 }
+/* Styling for the Go Back button with border */
+.back-button {
+  display: flex;
+  align-items: center;  /* Center the content vertically */
+  padding: 10px 15px;
+  border: 2px solid #030303;  /* Border color */
+  border-radius: 5px;
+  background: #ffffff;  /* White background */
+  color: #000000;  /* Text and arrow color */
+  transition: background-color 0.3s, border-color 0.3s;
+  text-align: center;
+}
+
+/* Hover effect for Go Back button */
+.back-button:hover {
+  background: #f1f1f1;
+  border-color: #000000;
+}
+
+

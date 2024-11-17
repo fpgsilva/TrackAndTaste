@@ -10,13 +10,13 @@ export function SearchResults() {
 
   // Fetch recipes.json once when component mounts
   useEffect(() => {
-    fetch('/recipes.json')
+    fetch("/recipes.json")
       .then((response) => response.json())
       .then((json) => {
         setRecipes(json);
         filterResults(json); // Filter results immediately after fetching
       })
-      .catch((error) => console.error('Error fetching recipes:', error));
+      .catch((error) => console.error("Error fetching recipes:", error));
   }, []);
 
   // Filter recipes based on query
