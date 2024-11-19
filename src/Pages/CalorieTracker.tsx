@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./Calories.css"; // Styles for this component
+import Navbar from "../components/Navbar";
 
 export function CalorieTracker() {
   const navigate = useNavigate();
@@ -90,6 +91,8 @@ export function CalorieTracker() {
           ></div>
         </div>
       </section>
+      <Navbar />
+
     </div>
   );
 }

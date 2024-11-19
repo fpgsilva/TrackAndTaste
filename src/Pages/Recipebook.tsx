@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
 //import "./Recipebook.css";
 
 export function Recipebook() {
@@ -70,6 +71,8 @@ export function Recipebook() {
           <p>No results found.</p>
         )}
       </div>
+      <Navbar />
+
     </div>
   );
 }

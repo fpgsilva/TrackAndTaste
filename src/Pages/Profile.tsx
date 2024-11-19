@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import './Profile.css'; // Import the CSS file
+import Navbar from "../components/Navbar";
 
 export function Profile() {
 
@@ -13,6 +14,8 @@ export function Profile() {
         <Link to="/CalorieTracker">Calorie Tracker</Link>
         <Link to="/Settings">Settings</Link>
       </div>
+      <Navbar />
+
     </div>
   );
 }
