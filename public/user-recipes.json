@@ -5,6 +5,7 @@
     "ingredients": ["pasta", "beef", "tomato sauce"],
     "instructions": "Boil pasta, cook beef, mix with sauce.",
     "time": 30,
+    "calories": 151,
     "difficulty": "easy",
     "type": "main",
     "vegan": false,
@@ -16,6 +17,7 @@
   "ingredients": ["eggs", "cheese", "ham", "onion", "bell pepper"],
   "instructions": "Beat eggs, add ingredients, cook in a pan.",
   "time": 15,
+  "calories": 152,
   "difficulty": "easy",
   "type": "breakfast",
   "vegan": false,
@@ -28,10 +30,12 @@
   "ingredients": ["banana", "berries", "yogurt", "honey"],
   "instructions": "Blend all ingredients until smooth.",
   "time": 5,
+  "calories": 150,
   "difficulty": "easy",
   "type": "drink",
   "vegan": false,
   "glutenFree": true,
   "description": "A refreshing and healthy drink made with fresh fruits."
+
 }  ]
   
