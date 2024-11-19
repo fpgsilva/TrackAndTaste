@@ -1,0 +1,6 @@
+[
+    { "id": 0, "title": "Spaghetti Bolognese", "ingredients": ["pasta", "beef", "tomato sauce"], "instructions": "Boil pasta, cook beef, mix with sauce.", "time": 30, "difficulty": "easy", "type": "main", "vegan": false, "glutenFree": false },
+    { "id": 5, "title": "Omelette", "ingredients": ["eggs", "cheese", "ham", "onion", "bell pepper"], "instructions": "Beat eggs, add ingredients, cook in a pan.", "time": 15, "difficulty": "easy", "type": "breakfast", "vegan": false, "glutenFree": true },
+    { "id": 8, "title": "Fruit Smoothie", "ingredients": ["banana", "berries", "yogurt", "honey"], "instructions": "Blend all ingredients until smooth.", "time": 5, "difficulty": "easy", "type": "drink", "vegan": false, "glutenFree": true }
+  ]
+  

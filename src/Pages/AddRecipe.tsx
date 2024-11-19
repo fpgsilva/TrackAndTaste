@@ -55,7 +55,20 @@ export function AddRecipe() {
     setRecipe({ ...recipe, steps: updatedSteps });
   };
 
-  const handleCreate = () => alert("Recipe Created!");
+  const handleCreate = () => {
+    const existingRecipes = JSON.parse(localStorage.getItem("userRecipes") || "[]");
+    const newRecipe = {
+      ...recipe,
+      id: Date.now().toString(), // Generate a unique ID
+    };
+    
+    const updatedRecipes = [...existingRecipes, newRecipe];
+    localStorage.setItem("userRecipes", JSON.stringify(updatedRecipes));
+    
+    alert("Recipe Created!");
+    navigate("/recipebook"); // Navigate back to the Recipebook page
+  };
+  
   const handleContinueLater = () => alert("Recipe Saved for Later!");
   const handleDelete = () => {
     setRecipe({
