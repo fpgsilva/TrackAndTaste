@@ -13,6 +13,7 @@ export function AddRecipe() {
     description: "",
     ingredients: "",
     steps: [] as string[], // Store steps as an array of strings
+    image: null as File | null, // New state for storing the image file
   });
 
   const handleChange = (
@@ -21,7 +22,19 @@ export function AddRecipe() {
     >
   ) => {
     const { name, value } = e.target;
-    setRecipe({ ...recipe, [name]: value });
+
+    if (name === "calories") {
+      const numericValue = Math.max(0, parseInt(value) || 0); // Ensure value is at least 0
+      setRecipe({ ...recipe, [name]: numericValue.toString() });
+    } else {
+      setRecipe({ ...recipe, [name]: value });
+    }
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setRecipe({ ...recipe, image: e.target.files[0] });
+    }
   };
 
   const handleStepChange = (index: number, value: string) => {
@@ -37,6 +50,11 @@ export function AddRecipe() {
     }));
   };
 
+  const handleRemoveStep = (index: number) => {
+    const updatedSteps = recipe.steps.filter((_, i) => i !== index);
+    setRecipe({ ...recipe, steps: updatedSteps });
+  };
+
   const handleCreate = () => alert("Recipe Created!");
   const handleContinueLater = () => alert("Recipe Saved for Later!");
   const handleDelete = () => {
@@ -48,6 +66,7 @@ export function AddRecipe() {
       description: "",
       ingredients: "",
       steps: [],
+      image: null,
     });
   };
 
@@ -65,7 +84,7 @@ export function AddRecipe() {
       <form className="recipe-form">
         {/* Title */}
         <label>
-          <span>Title:</span>
+          <span>Title: </span>
           <input
             type="text"
             name="title"
@@ -101,6 +120,7 @@ export function AddRecipe() {
             </select>
           </label>
           <label>
+            <p></p>
             <span>Calories (kcal):</span>
             <input
               type="number"
@@ -113,17 +133,18 @@ export function AddRecipe() {
         </div>
 
         {/* Brief Description */}
+
         <label>
           <span>Brief Description:</span>
           <textarea
-            name="description"
+            name="briefDescription"
             value={recipe.description}
             onChange={handleChange}
             placeholder="A short description of your recipe"
+            className="no-resize"
           ></textarea>
         </label>
 
-        {/* Ingredients */}
         <label>
           <span>Ingredients:</span>
           <textarea
@@ -131,29 +152,63 @@ export function AddRecipe() {
             value={recipe.ingredients}
             onChange={handleChange}
             placeholder="List all ingredients"
+            className="no-resize"
           ></textarea>
         </label>
+
+        {/* Image Upload */}
+        <div className="image-upload">
+          <span>Upload Image:</span>
+          <div className="image-square">
+            {recipe.image ? (
+              <img
+                src={URL.createObjectURL(recipe.image)}
+                alt="Recipe Preview"
+                className="image-preview"
+              />
+            ) : (
+              <span className="placeholder">No Image</span>
+            )}
+          </div>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="choose-file"
+          />
+        </div>
 
         {/* Steps */}
         <div ref={stepsContainerRef} className="steps-container">
           <span>Steps:</span>
           {recipe.steps.map((step, index) => (
-            <div key={index}>
+            <div key={index} className="step-item">
               <textarea
                 name={`step-${index}`}
                 value={step}
                 onChange={(e) => handleStepChange(index, e.target.value)}
                 placeholder={`Step ${index + 1}`}
+                className="no-resize"
               ></textarea>
             </div>
           ))}
-          <button
-            type="button"
-            onClick={handleAddStep}
-            className="btn add-step"
-          >
-            Add Step
-          </button>
+          <div className="step-buttons-container">
+            <button
+              type="button"
+              onClick={handleAddStep}
+              className="btn add-step"
+            >
+              Add Step
+            </button>
+            <button
+              type="button"
+              onClick={() => handleRemoveStep(recipe.steps.length - 1)}
+              className="btn remove-step"
+              disabled={recipe.steps.length === 0}
+            >
+              Remove Step
+            </button>
+          </div>
         </div>
 
         {/* Buttons */}

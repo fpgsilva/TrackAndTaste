@@ -1,8 +1,12 @@
+.no-resize {
+  resize: none;
+}
+
 /* Main container for the Add Recipe page */
 .add-recipe {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 140%;
     height: 100%;
     padding: 20px 40px;
     padding-top: 100px; /* Ensure the section is below the fixed navbar */
@@ -46,7 +50,7 @@
 
 /* Add Step button styling */
 .btn.add-step {
-    background: #f9f9f9; /* Match input background */
+    background: #27ae60; /* Match input background */
     color: #333; /* Text color */
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -58,15 +62,39 @@
 
 /* Hover effect for Add Step button */
 .btn.add-step:hover {
-    background: #eaeaea; /* Slightly darker hover effect */
+    background: #2ecc71; /* Slightly darker hover effect */
     border-color: #aaa;
 }
 
-/* Add Step button alignment */
-.add-step-container {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 20px;
+
+.step-buttons-container {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  margin-top: 10px; /* Space from the steps list */
+  justify-content: flex-start; /* Align buttons to the left */
+}
+
+/* Remove Step button styling */
+.btn.remove-step {
+  background: #e74c3c; /* Orange background */
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn.remove-step:hover {
+  background: #c0392b; 
+  border-color: #bbb;
+}
+
+/* Disabled Remove Step button styling */
+.btn.remove-step:disabled {
+  background: #e0e0e0;
+  cursor: not-allowed;
 }
 
 /* Steps list container */
@@ -99,10 +127,7 @@
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
-    .add-recipe {
-        padding: 10px 20px;
-        padding-top: 100px; /* Adjust spacing for mobile view */
-    }
+   
 
     .btn.add-step,
     .btn.submit-recipe {
@@ -110,6 +135,8 @@
         text-align: center;
     }
 }
+
+
 
 /* Fade-in animation keyframes */
 @keyframes fadeIn {
@@ -190,4 +217,43 @@
   border-color: #000000;
 }
 
+
+
+.image-location {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* Optional: Adjust the size of the image */
+  width: 100px;
+  height: auto;
+}
+
+.image-upload {
+  max-width: 50%;
+  max-height: 50%;
+}
+
+.image-square {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  background: #f9f9f9;
+  position: relative;
+}
+
+.image-square .placeholder {
+  font-size: 14px;
+  color: #999;
+}
+
+.image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
 

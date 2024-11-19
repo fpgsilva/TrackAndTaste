@@ -10,3 +10,4 @@
    { "id": 8, "title": "Fruit Smoothie", "ingredients": ["banana", "berries", "yogurt", "honey"], "instructions": "Blend all ingredients until smooth.", "time": 5, "difficulty": "easy", "type": "drink", "vegan": false, "glutenFree": true },
    { "id": 9, "title": "Roasted Veggie Bowl", "ingredients": ["sweet potato", "zucchini", "chickpeas", "olive oil", "spices"], "instructions": "Roast vegetables and chickpeas, serve in a bowl.", "time": 40, "difficulty": "medium", "type": "main", "vegan": true, "glutenFree": true }
  ]
+ 
