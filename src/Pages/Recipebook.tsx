@@ -7,6 +7,8 @@ export function Recipebook() {
   const [recipes, setRecipes] = useState<any[]>([]); // Recipes fetched from JSON
   const [results, setResults] = useState<any[]>([]); // Combined results
 
+  recipes != null;
+
   // Get user-added recipes from localStorage
   const getLocalRecipes = (): any[] => {
     const storedRecipes = localStorage.getItem("userRecipes");
@@ -42,8 +44,6 @@ export function Recipebook() {
 
   return (
     <div className="search-results">
-      <p></p>
-      <p></p>
       <p></p>
 
       <div className="scroll-container">

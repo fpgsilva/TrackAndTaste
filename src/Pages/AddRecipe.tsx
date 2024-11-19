@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddRecipe.css";
-import Navbar from "../components/Navbar";
 
 export function AddRecipe() {
   const navigate = useNavigate();

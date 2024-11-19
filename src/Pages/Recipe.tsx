@@ -27,6 +27,9 @@ export function Recipe() {
   const [rating, setRating] = useState<number | null>(null);
   const [review, setReview] = useState<string>("");
 
+  recipeID != null;
+  rating != null;
+
   const navigate = useNavigate();
 
   useEffect(() => {
