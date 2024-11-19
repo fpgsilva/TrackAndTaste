@@ -57,19 +57,21 @@ export function AddRecipe() {
   };
 
   const handleCreate = () => {
-    const existingRecipes = JSON.parse(localStorage.getItem("userRecipes") || "[]");
+    const existingRecipes = JSON.parse(
+      localStorage.getItem("userRecipes") || "[]"
+    );
     const newRecipe = {
       ...recipe,
       id: Date.now().toString(), // Generate a unique ID
     };
-    
+
     const updatedRecipes = [...existingRecipes, newRecipe];
     localStorage.setItem("userRecipes", JSON.stringify(updatedRecipes));
-    
+
     alert("Recipe Created!");
     navigate("/recipebook"); // Navigate back to the Recipebook page
   };
-  
+
   const handleContinueLater = () => alert("Recipe Saved for Later!");
   const handleDelete = () => {
     setRecipe({
@@ -137,17 +139,17 @@ export function AddRecipe() {
             <p></p>
             <span>Calories (kcal):</span>
             <input
-    type="text" // Changed from "number" to "text"
-    name="calories"
-    value={recipe.calories}
-    onChange={(e) => {
-      // Allow only numeric values
-      const numericValue = e.target.value.replace(/[^0-9]/g, ""); 
-      setRecipe({ ...recipe, calories: numericValue });
-    }}
-    inputMode="numeric" // Ensures a numeric keyboard on mobile devices
-    placeholder="e.g., 200"
-  />
+              type="text" // Changed from "number" to "text"
+              name="calories"
+              value={recipe.calories}
+              onChange={(e) => {
+                // Allow only numeric values
+                const numericValue = e.target.value.replace(/[^0-9]/g, "");
+                setRecipe({ ...recipe, calories: numericValue });
+              }}
+              inputMode="numeric" // Ensures a numeric keyboard on mobile devices
+              placeholder="e.g., 200"
+            />
           </label>
         </div>
 

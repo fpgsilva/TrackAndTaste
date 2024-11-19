@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 //import "./Recipebook.css";
 
 export function Recipebook() {
@@ -24,12 +24,11 @@ export function Recipebook() {
 
   const handleClick = (id: number) => {
     // Save the recipe id to local storage
-    localStorage.setItem('selectedRecipeId', id.toString());
+    localStorage.setItem("selectedRecipeId", id.toString());
 
     // Redirect to the /Recipe/ page
-    navigate('/Recipe');
+    navigate("/Recipe");
   };
-  
 
   useEffect(() => {
     fetch("user-recipes.json")
@@ -51,7 +50,11 @@ export function Recipebook() {
         {results.length > 0 ? (
           <div className="recipe-grid">
             {results.map((result) => (
-              <div className="recipe-card" key={result.id} onClick={() => handleClick(result.id)}>
+              <div
+                className="recipe-card"
+                key={result.id}
+                onClick={() => handleClick(result.id)}
+              >
                 <h3>{result.title}</h3>
                 <p>
                   <strong>Description:</strong> {result.description}
@@ -70,7 +73,6 @@ export function Recipebook() {
         )}
       </div>
       <Navbar />
-
     </div>
   );
 }
