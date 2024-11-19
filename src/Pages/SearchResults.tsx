@@ -92,7 +92,7 @@ export function SearchResults() {
                   <strong>Ingredients:</strong> {recipe.ingredients.join(", ")}
                 </p>
                 <p>
-                  <strong>Instructions:</strong> {recipe.instructions}
+                  <strong>Description:</strong> {recipe.description}
                 </p>
                 <p>
                   <strong>Time:</strong> {recipe.time} mins

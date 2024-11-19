@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import { useNavigate } from 'react-router-dom';
 //import "./Recipebook.css";
 
 export function Recipebook() {
@@ -12,11 +13,6 @@ export function Recipebook() {
     return storedRecipes ? JSON.parse(storedRecipes) : [];
   };
 
-  // Save user-added recipes to localStorage
-  //const saveLocalRecipes = (newRecipes: any[]) => {
-  //  localStorage.setItem("userRecipes", JSON.stringify(newRecipes));
-  //};
-
   // Combine recipes from the file with user-added recipes
   const addedRecipes = (fetchedRecipes: any[]) => {
     const localRecipes = getLocalRecipes();
@@ -24,20 +20,22 @@ export function Recipebook() {
     setResults(combinedRecipes); // Update results state
   };
 
-  // Add a new recipe to localStorage and refresh results
-  //const addNewRecipe = (newRecipe: any) => {
-  // const updatedLocalRecipes = [...getLocalRecipes(), newRecipe];
-  //  saveLocalRecipes(updatedLocalRecipes);
-  //  addedRecipes(recipes); // Recompute the results to include new recipes
-  //};
+  const navigate = useNavigate(); // Hook to handle navigation
 
-  // Fetch recipes from the file and initialize results
+  const handleClick = (id: number) => {
+    // Save the recipe id to local storage
+    localStorage.setItem('selectedRecipeId', id.toString());
+
+    // Redirect to the /Recipe/ page
+    navigate('/Recipe');
+  };
+  
+
   useEffect(() => {
     fetch("user-recipes.json")
       .then((response) => response.json())
       .then((json) => {
         setRecipes(json);
-        console.log(recipes);
         addedRecipes(json); // Combine with local recipes
       })
       .catch((error) => console.error("Error fetching recipes:", error));
@@ -53,10 +51,10 @@ export function Recipebook() {
         {results.length > 0 ? (
           <div className="recipe-grid">
             {results.map((result) => (
-              <div className="recipe-card" key={result.id}>
+              <div className="recipe-card" key={result.id} onClick={() => handleClick(result.id)}>
                 <h3>{result.title}</h3>
                 <p>
-                  <strong>Instructions:</strong> {result.instructions}
+                  <strong>Description:</strong> {result.description}
                 </p>
                 <p>
                   <strong>Time:</strong> {result.time} mins
