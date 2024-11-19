@@ -14,7 +14,7 @@ export function SearchResults() {
   const [filter, setFilter] = useState<string>("all");
 
   useEffect(() => {
-    fetch("/recipes.json")
+    fetch("recipes.json")
       .then((response) => response.json())
       .then((json) => {
         setRecipes(json);

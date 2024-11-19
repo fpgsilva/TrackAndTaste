@@ -32,7 +32,7 @@ export function Recipebook() {
 
   // Fetch recipes from the file and initialize results
   useEffect(() => {
-    fetch("/user-recipes.json")
+    fetch("user-recipes.json")
       .then((response) => response.json())
       .then((json) => {
         setRecipes(json);
