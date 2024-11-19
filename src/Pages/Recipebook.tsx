@@ -45,7 +45,7 @@ export function Recipebook() {
   return (
     <div className="search-results">
       <p></p>
-
+      <p></p>
       <div className="scroll-container">
         {results.length > 0 ? (
           <div className="recipe-grid">
