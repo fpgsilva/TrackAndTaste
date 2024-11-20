@@ -22,15 +22,14 @@ h2 {
 
 .filter-dropdown {
     margin: 10px;
-    padding: 10px 10px 5px;
+    padding: 0.5rem 1rem;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 150px;
+    width: 10vw;
     cursor: pointer;
     transition: box-shadow 0.2s, border-color 0.2s;
-    position: fixed;
-    top: 14.5vh;
+    top: 100px;
     right: inherit;
 }
   

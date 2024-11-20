@@ -3,13 +3,12 @@
   align-items: center;
   justify-content: flex-start;
   position: fixed;
-  margin: 10px auto;
+  margin: 10px;
   top: 100px;
   padding: 0.5rem 1rem;
   left: 0;
   right: 0;
   width: fit-content;
-
 }
 
 .search-input {
