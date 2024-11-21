@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import MainScreen from "../components/MainScreen";
 import SearchBar from "../components/SearchBar";
 import TopPicks from "../components/TopPicks";
+import { RecentCooked } from "../components/RecentCooked";
 
 export function Home() {
   return (
@@ -11,6 +12,9 @@ export function Home() {
       </div>
       <div>
         <TopPicks />
+      </div>
+      <div>
+        <RecentCooked />
       </div>
       <div>
         <Navbar />
