@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import "./SearchResults.css";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 
 export function SearchResults() {
   const location = useLocation();
   const query = location.state?.query.toLowerCase() || "";
+  const navigate = useNavigate();
 
   const [recipes, setRecipes] = useState<any[]>([]);
   const [results, setResults] = useState<any[]>([]);
@@ -58,6 +60,14 @@ export function SearchResults() {
     setResults(filtered);
   };
 
+  const handleClick = (id: number) => {
+    // Save the recipe id to local storage
+    localStorage.setItem("selectedRecipeId", id.toString());
+
+    // Redirect to the /Recipe/ page
+    navigate("/Recipe");
+  };
+
   useEffect(() => {
     filterResults(recipes, query, filter);
   }, [recipes, query, filter]);
@@ -86,7 +96,10 @@ export function SearchResults() {
         {results.length > 0 ? (
           <div className="recipe-grid">
             {results.map((recipe) => (
-              <div className="recipe-card" key={recipe.id}>
+              <div className="recipe-card"
+              key={recipe.id}
+              onClick={() => handleClick(recipe.id)}
+              >
                 <h3>{recipe.title}</h3>
                 <p>
                   <strong>Ingredients:</strong> {recipe.ingredients.join(", ")}

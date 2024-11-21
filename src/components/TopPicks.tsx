@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "./TopPicks.css";
+import { useNavigate } from "react-router-dom";
 
 const TopPicks = () => {
   const [recipes, setRecipes] = useState<any[]>([]);
   const [offset, setOffset] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("recipes.json")
@@ -33,6 +35,14 @@ const TopPicks = () => {
     );
   };
 
+  const handleClick = (id: number) => {
+    // Save the recipe id to local storage
+    localStorage.setItem("selectedRecipeId", id.toString());
+
+    // Redirect to the /Recipe/ page
+    navigate("/Recipe");
+  };
+
   return (
     <div className="carousel-container">
       <header className="carousel-header">Top Picks of the Week</header>
@@ -50,7 +60,10 @@ const TopPicks = () => {
           }}
         >
           {recipes.map((recipe) => (
-            <div className="carousel-card" key={recipe.id}>
+            <div className="carousel-card" 
+            key={recipe.id}
+            onClick={() => handleClick(recipe.id)}
+            >
               <h3>{recipe.title}</h3>
               <p>
                 <strong>Time:</strong> {recipe.time} mins
