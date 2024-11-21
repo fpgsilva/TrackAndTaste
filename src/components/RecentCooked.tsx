@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import "./RecentCooked.css";
 import Navbar from "./Navbar";
 
-
 export function RecentCooked() {
-
   const [recipes, setRecipes] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("recipes.json")
+    fetch("recent.json")
       .then((response) => response.json())
       .then((json) => {
         setRecipes(json);

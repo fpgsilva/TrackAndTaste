@@ -1,15 +1,25 @@
 .carousel-container {
     position: fixed;
-    top: 170px;
+    top: 200px;
     width: 100vw;
     overflow: hidden;
-    margin: 20px 0;
+   
     border: 2px solid transparent;
     border-image: linear-gradient(to right, rgb(100, 100, 100), rgb(80, 207, 76));
     border-image-slice: 1;
     border-left: 0px;
     border-right: 0px;
 }
+  
+.carousel-header {
+    position: absolute;
+    left: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    z-index: 10;
+    padding: 10px 15px;
+    color: #000;
+  }
   
 .carousel-wrapper {
     width: 100vw;

@@ -9,7 +9,6 @@ import { CalorieTracker } from "./Pages/CalorieTracker";
 import { SearchResults } from "./Pages/SearchResults";
 import { Recipe } from "./Pages/Recipe";
 
-
 function App() {
   return (
     <Router>
@@ -21,9 +20,7 @@ function App() {
           <Route path="/AddRecipe" element={<AddRecipe />}></Route>
           <Route path="/CalorieTracker" element={<CalorieTracker />}></Route>
           <Route path="/SearchResults" element={<SearchResults />}></Route>
-          <Route path="/Recipe" element={<Recipe/>}></Route>
-
-
+          <Route path="/Recipe" element={<Recipe />}></Route>
           <Route path="/Settings" element={<Settings />}></Route>
         </Route>
       </Routes>
