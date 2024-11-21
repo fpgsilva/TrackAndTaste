@@ -31,9 +31,10 @@ export function RecentCooked() {
         {recipes.length > 0 ? (
           <div className="recipe-grid">
             {recipes.map((recipe) => (
-              <div className="recipe-card" 
-              key={recipe.id}
-              onClick={() => handleClick(recipe.id)}
+              <div
+                className="recipe-card"
+                key={recipe.id}
+                onClick={() => handleClick(recipe.id)}
               >
                 <h3>{recipe.title}</h3>
                 <p>

@@ -38,33 +38,8 @@
         "glutenFree": true,
         "description": "A vibrant and healthy dish with fresh veggies and bold flavors.",
         "rating": "⭐⭐⭐"
-      },
-      {
-        "id": 4,
-        "title": "Grilled Cheese Sandwich",
-        "ingredients": ["bread", "cheese", "butter"],
-        "instructions": "Butter bread, place cheese between slices, grill until golden brown.",
-        "time": 10,
-        "difficulty": "easy",
-        "type": "snack",
-        "vegan": false,
-        "glutenFree": false,
-        "description": "A gooey and crispy classic perfect for a quick snack.",
-        "rating": "⭐⭐⭐⭐"
-      },
-      {
-        "id": 5,
-        "title": "Omelette",
-        "ingredients": ["eggs", "cheese", "ham", "onion", "bell pepper"],
-        "instructions": "Beat eggs, add ingredients, cook in a pan.",
-        "time": 15,
-        "difficulty": "easy",
-        "type": "breakfast",
-        "vegan": false,
-        "glutenFree": true,
-        "description": "A fluffy and customizable breakfast favorite.",
-        "rating": "⭐⭐"
       }
-    
+     
+      
   ]
   

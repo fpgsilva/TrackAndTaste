@@ -16,6 +16,7 @@ interface RecipeInt {
   glutenFree: boolean;
   calories: number;
   description: string;
+  rating: number;
 }
 
 export function Recipe() {
@@ -79,7 +80,7 @@ export function Recipe() {
   if (!recipeData) return <p>No recipe data available.</p>;
 
   return (
-    <div className="test">
+    <div>
       <div className="back-container1">
         <button className="back-button" onClick={() => navigate(-1)}>
           ← Go Back
@@ -97,15 +98,12 @@ export function Recipe() {
           <p>🔥 Calories: {recipeData.calories}</p>
         </div>
         <p>{recipeData.description}</p>
+        <p>Rating: {recipeData.rating}</p>
 
         {/* Ingredients Section */}
         <div className="ingredients">
           <h3>Ingredients</h3>
-          <ul>
-            {recipeData.ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient}</li>
-            ))}
-          </ul>
+          <p>{recipeData.ingredients.join(", ")}</p>
         </div>
 
         {/* Buttons Section */}
@@ -121,22 +119,10 @@ export function Recipe() {
           </button>
         </div>
 
-        {/* Ratings Section */}
-        <div className="ratings">
-          <h3>Ratings</h3>
-          <button onClick={() => handleRating(5)}>5⭐ Nice</button>
-          <button onClick={() => handleRating(2)}>2⭐ Not so nice</button>
-        </div>
-
         {/* Review Section */}
-        <div className="review">
-          <h3>Leave a Review</h3>
-          <textarea
-            value={review}
-            onChange={(e) => setReview(e.target.value)}
-            placeholder="Write your review here..."
-          />
-          <button onClick={handleReviewSubmit}>Submit</button>
+        <div className="submit">
+          <h1>Review the Recipe!</h1>
+          <button onClick={handleReviewSubmit}>Start Review!</button>
         </div>
       </div>
       <Navbar />

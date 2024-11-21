@@ -1,4 +1,5 @@
 body {
-    overflow: hidden; /* Disables scrolling completely */
+    overflow-x: hidden; /* Disables scrolling completely */
+    overflow-y: hidden; /* Disables vertical scrolling */;
   }
   

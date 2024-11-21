@@ -2,10 +2,13 @@
     position:absolute;
     display: flex;
     flex-direction: column;
+    width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     top: 240px;
 }
+
+
 
 .title {
     margin-top: 200px; 
