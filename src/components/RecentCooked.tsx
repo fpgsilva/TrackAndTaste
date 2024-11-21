@@ -49,6 +49,7 @@ export function RecentCooked() {
                 <p>
                   <strong>Difficulty:</strong> {recipe.difficulty}
                 </p>
+                <strong>Rating:</strong> {recipe.rating}
               </div>
             ))}
           </div>

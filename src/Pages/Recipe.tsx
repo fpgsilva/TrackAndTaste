@@ -25,11 +25,10 @@ export function Recipe() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [rating, setRating] = useState<number | null>(null);
+
   const [review, setReview] = useState<string>("");
 
   recipeID != null;
-  rating != null;
 
   const navigate = useNavigate();
 
@@ -64,11 +63,6 @@ export function Recipe() {
 
     fetchRecipe();
   }, []);
-
-  const handleRating = (value: number) => {
-    setRating(value);
-    console.log("User rating:", value);
-  };
 
   const handleReviewSubmit = () => {
     console.log("User review:", review);

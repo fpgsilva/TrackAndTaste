@@ -2,7 +2,7 @@
   resize: none;
 }
 
-/* Main container for the Add Recipe page */
+
 .add-recipe {
   display: flex;
   flex-direction: column;

@@ -1,21 +1,20 @@
 .recent-cooked {
-    position:absolute;
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    box-sizing: border-box;
-    top: 240px;
+    position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  top: 240px;
+  
 }
-
-
 
 .title {
     margin-top: 200px; 
     color: #000;
     font-size: 22px;
     padding: 10px 15px;
-    height: 1px;
+    height: 0px;
 }
 
 .recipe-grid {
@@ -24,13 +23,13 @@
     gap: 20px;
     padding: 20px;
     box-sizing: border-box;
+    
 }
 
 .recipe-card {
     border: 1px solid #ccc;
     border-radius: 8px;
     width: 45vw;
-    padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     transition: transform 0.2s, box-shadow 0.2s;

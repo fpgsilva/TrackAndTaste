@@ -5,7 +5,6 @@ import "./SearchResults.css";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 
-
 export function SearchResults() {
   const location = useLocation();
   const query = location.state?.query.toLowerCase() || "";
@@ -96,9 +95,10 @@ export function SearchResults() {
         {results.length > 0 ? (
           <div className="recipe-grid">
             {results.map((recipe) => (
-              <div className="recipe-card"
-              key={recipe.id}
-              onClick={() => handleClick(recipe.id)}
+              <div
+                className="recipe-card"
+                key={recipe.id}
+                onClick={() => handleClick(recipe.id)}
               >
                 <h3>{recipe.title}</h3>
                 <p>
@@ -112,6 +112,9 @@ export function SearchResults() {
                 </p>
                 <p>
                   <strong>Difficulty:</strong> {recipe.difficulty}
+                </p>
+                <p>
+                  <strong>Rating:{recipe.rating}</strong>
                 </p>
               </div>
             ))}
