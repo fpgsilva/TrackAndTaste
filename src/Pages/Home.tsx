@@ -12,10 +12,10 @@ export function Home() {
         <SearchBar />
       </div>
       <div>
-        <TopPicks />
+        <RecentCooked />
       </div>
       <div>
-        <RecentCooked />
+        <TopPicks />
       </div>
       <div>
         <Navbar />

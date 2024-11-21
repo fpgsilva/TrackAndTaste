@@ -28,7 +28,9 @@ const TopPicks = () => {
   };
 
   const handleScrollRight = () => {
-    setOffset((prevOffset) => (prevOffset + 1) % recipes.length);
+    setOffset(
+        (prevOffset) => (prevOffset + 1 + recipes.length) % recipes.length
+    );
   };
 
   return (
