@@ -1,62 +1,68 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Calories.css"; // Styles for this component
 import Navbar from "../components/Navbar";
 
+interface Recipe {
+  id: number;
+  title: string;
+  calories: number;
+  rating: number;
+  image: string;
+}
+
 export function CalorieTracker() {
   const navigate = useNavigate();
 
-  // Mock data - replace with actual data as needed
-  const weeklyCalories = 1997;
-  const dailyGoal = 2000;
-  const caloriesToday = 500;
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [dailyGoal, setDailyGoal] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const recipes = [
-    {
-      id: 1,
-      title: "Recipe 1",
-      calories: "xx",
-      rating: 3,
-      image: "image-url-1",
-    },
-    {
-      id: 2,
-      title: "Recipe 2",
-      calories: "yy",
-      rating: 5,
-      image: "image-url-2",
-    },
-    {
-      id: 3,
-      title: "Recipe 3",
-      calories: "ww",
-      rating: 2,
-      image: "image-url-3",
-    },
-    {
-      id: 4,
-      title: "Recipe 4",
-      calories: "vv",
-      rating: 4,
-      image: "image-url-4",
-    },
-  ];
+  useEffect(() => {
+    const fetchCaloriesData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("calories.json"); // Ensure the file is in the public folder or adjust the path.
+        if (!response.ok) throw new Error("Failed to fetch calorie data");
+
+        const data: Recipe[] = await response.json();
+        setRecipes(data);
+
+        // Calculate the total calories for the daily goal
+        const totalCalories = data.reduce(
+          (sum, recipe) => sum + recipe.calories,
+          0
+        );
+        setDailyGoal(totalCalories);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCaloriesData();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="calories-tracker">
       {/* Header */}
-      <header className="tracker-header">
+      <header className="back-container">
         <button onClick={() => navigate(-1)} className="back-button">
-          ←
+          ← Go back
         </button>
       </header>
 
       {/* Calories Tracker */}
       <section className="calories-overview">
-        <h2>Calories Tracker</h2>
-        <p>Calories This Week: {weeklyCalories}</p>
+        <h1>Calories Tracker</h1>
+        <p>Last week Calories: 11,200</p>
       </section>
 
-      {/* Recently Tracked Recipes */}
       <section className="recently-tracked">
         <h3>Recently Tracked Recipes:</h3>
         <div className="recipes-grid">
@@ -72,7 +78,7 @@ export function CalorieTracker() {
                   <strong>{recipe.title}</strong>
                 </p>
                 <p>Calories: {recipe.calories}</p>
-                <p>Rating: {"⭐".repeat(recipe.rating)}</p>
+                <p>Rating: {recipe.rating}</p>
               </div>
             </div>
           ))}
@@ -82,17 +88,16 @@ export function CalorieTracker() {
       {/* Daily Goal */}
       <section className="daily-goal">
         <p>
-          Daily Goal: {caloriesToday}/{dailyGoal}
+          Daily Goal Progress: {dailyGoal}/{2000}
         </p>
         <div className="progress-bar">
           <div
             className="progress"
-            style={{ width: `${(caloriesToday / dailyGoal) * 100}%` }}
+            style={{ width: `${(dailyGoal / 2000) * 100}%` }}
           ></div>
         </div>
       </section>
       <Navbar />
-
     </div>
   );
 }

@@ -84,3 +84,29 @@
   height: 100%;
   background-color: #4caf50;
 }
+.calories-overview h1,
+.calories-overview p,
+.recently-tracked h3 {
+  color: black;
+}
+
+.calories-tracker {
+  padding: 20px;
+  padding-top: 60px; /* Ensure space for the back button */
+  font-family: Arial, sans-serif;
+  position: relative; /* Allows proper positioning for child elements */
+}
+
+.back-container {
+  position: fixed; /* Keeps the back button visible */
+  top: 100px; /* Position near the top */
+  left: 20px; /* Position near the left */
+  z-index: 100; /* Ensures it is above other elements */
+}
+
+.back-button {
+  font-size: 18px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
