@@ -35,6 +35,7 @@ export function Recipe() {
 
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
@@ -48,10 +49,22 @@ export function Recipe() {
 
         setRecipeID(parsedID);
 
-        const response = await fetch("user-recipes.json");
-        if (!response.ok) throw new Error("Failed to fetch data.json");
+        const files = ["recipes.json", "calories.json", "recent.json", "recipeBook.json", "user-recipes.json"];
+        const fetchPromises = files.map((file) => fetch(file).then((res) => res.json()));
+        const response = await Promise.all(fetchPromises);
 
-        const data: RecipeInt[] = await response.json();
+        if (!response) throw new Error("Failed to fetch data.json");
+
+        let combinedRecipes: any[] = response.flat();
+
+        
+        const localUserRecipes = localStorage.getItem("userRecipes");
+        if (localUserRecipes) {
+          const parsedUserRecipes = JSON.parse(localUserRecipes);
+          combinedRecipes = combinedRecipes.concat(parsedUserRecipes);
+        }
+
+        const data: RecipeInt[] = await response;
         const targetObject = data.find((obj: RecipeInt) => obj.id === parsedID);
         if (!targetObject)
           throw new Error(`Recipe with ID ${parsedID} not found`);
