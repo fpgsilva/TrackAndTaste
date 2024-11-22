@@ -27,7 +27,7 @@ export function RecentCooked() {
   return (
     <div className="recent-cooked">
       <h2 className="title">Recently Cooked Recipes</h2>
-      <div className="scroll-container">
+      <div className="scroll-container1">
         {recipes.length > 0 ? (
           <div className="recipe-grid">
             {recipes.map((recipe) => (

@@ -9,6 +9,15 @@
   
 }
 
+
+.scroll-container1 {
+    max-height: 480px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px; /* Optional: for spacing */
+    border: 1px solid #ddd; /* Optional: for visual clarity */
+    background-color: #f9f9f9; /* Optional: background color */
+  }
+
 .title {
     margin-top: 200px; 
     color: #000;

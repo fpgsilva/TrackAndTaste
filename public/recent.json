@@ -38,6 +38,34 @@
         "glutenFree": true,
         "description": "A vibrant and healthy dish with fresh veggies and bold flavors.",
         "rating": "⭐⭐⭐"
+      },
+      {
+        "id": 6,
+        "title": "Beef Tacos",
+        "ingredients": ["ground beef", "taco shells", "lettuce", "cheese", "salsa"],
+        "instructions": "Cook beef, assemble with toppings in taco shells.",
+        "time": 20,
+        "difficulty": "medium",
+        "type": "main",
+        "vegan": false,
+        "glutenFree": true,
+        "description": "A flavorful Mexican favorite packed with toppings.",
+        "rating": "⭐⭐⭐⭐",
+        "calories": 400
+      },
+      {
+        "id": 7,
+        "title": "Margarita Pizza",
+        "ingredients": ["pizza dough", "tomato sauce", "mozzarella", "basil"],
+        "instructions": "Spread sauce on dough, add cheese and basil, bake until crispy.",
+        "time": 30,
+        "difficulty": "medium",
+        "type": "main",
+        "vegan": false,
+        "glutenFree": false,
+        "description": "A simple yet delicious pizza with fresh basil and mozzarella.",
+        "rating": "⭐⭐⭐",
+        "calories": 300
       }
       
      
