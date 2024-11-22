@@ -23,12 +23,15 @@ export function Recipe() {
   const [recipeID, setRecipeID] = useState<number | null>(null);
   const [recipeData, setRecipeData] = useState<RecipeInt | null>(null);
 
+  recipeID != null;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [review, setReview] = useState<string>("");
-
-  recipeID != null;
+  const [review, setReview] = useState<string>(""); // For reviews
+  const [buttonText, setButtonText] = useState<string>("Track Calories"); // For track calories button text
+  const [saveButtonText, setSaveButtonText] = useState<string>(
+    "Save to Recipe Book"
+  ); // Save button text
 
   const navigate = useNavigate();
 
@@ -69,6 +72,25 @@ export function Recipe() {
     setReview("");
   };
 
+  const handleTrackCalories = () => {
+    const trackedRecipes = JSON.parse(
+      localStorage.getItem("trackedRecipes") || "[]"
+    );
+    const updatedRecipes = [...trackedRecipes, recipeData]; // Add the current recipe
+    localStorage.setItem("trackedRecipes", JSON.stringify(updatedRecipes));
+    setButtonText("Calories Tracked!");
+  };
+
+  // New method for saving recipe
+  const handleSaveRecipe = () => {
+    const savedRecipes = JSON.parse(
+      localStorage.getItem("userRecipes") || "[]"
+    );
+    const updatedSavedRecipes = [...savedRecipes, recipeData]; // Add the current recipe
+    localStorage.setItem("userRecipes", JSON.stringify(updatedSavedRecipes));
+    setSaveButtonText("Recipe Saved!"); // Change the button text after saving
+  };
+
   if (loading) return <p>Loading recipe data...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!recipeData) return <p>No recipe data available.</p>;
@@ -79,12 +101,8 @@ export function Recipe() {
         <button className="back-button" onClick={() => navigate(-1)}>
           ← Go Back
         </button>
-        <p>
-          <p></p>
-        </p>
       </div>
       <div className="recipe-details1">
-        {/* Top Section */}
         <h1>{recipeData.title}</h1>
         <div className="recipe-meta">
           <p>🕒 Time: {recipeData.time} min</p>
@@ -94,26 +112,19 @@ export function Recipe() {
         <p>{recipeData.description}</p>
         <p>Rating: {recipeData.rating}</p>
 
-        {/* Ingredients Section */}
         <div className="ingredients">
           <h3>Ingredients</h3>
           <p>{recipeData.ingredients.join(", ")}</p>
         </div>
 
-        {/* Buttons Section */}
         <div className="actions">
-          <button onClick={() => console.log("Save Recipe")}>
-            Save to Recipe Book
-          </button>
+          <button onClick={handleSaveRecipe}>{saveButtonText}</button>
           <button onClick={() => console.log("Start Steps")}>
             Start Steps
           </button>
-          <button onClick={() => console.log("Track Calories")}>
-            Track Calories
-          </button>
+          <button onClick={handleTrackCalories}>{buttonText}</button>
         </div>
 
-        {/* Review Section */}
         <div className="submit">
           <h1>Review the Recipe!</h1>
           <button onClick={handleReviewSubmit}>Start Review!</button>

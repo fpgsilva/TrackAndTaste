@@ -15,11 +15,19 @@ export function Recipebook() {
     return storedRecipes ? JSON.parse(storedRecipes) : [];
   };
 
-  // Combine recipes from the file with user-added recipes
+  // Combine recipes from the file with user-added recipes, ensuring no duplicates
   const addedRecipes = (fetchedRecipes: any[]) => {
     const localRecipes = getLocalRecipes();
-    const combinedRecipes = [...fetchedRecipes, ...localRecipes]; // Merge fetched and local
-    setResults(combinedRecipes); // Update results state
+
+    // Combine the recipes and remove duplicates based on 'id'
+    const combinedRecipes = [...fetchedRecipes, ...localRecipes];
+
+    // Use a Map to filter out duplicates based on the id (keys will be unique)
+    const uniqueRecipes = Array.from(
+      new Map(combinedRecipes.map((recipe) => [recipe.id, recipe])).values()
+    );
+
+    setResults(uniqueRecipes); // Update results state with unique recipes
   };
 
   const navigate = useNavigate(); // Hook to handle navigation
@@ -33,7 +41,7 @@ export function Recipebook() {
   };
 
   useEffect(() => {
-    fetch("user-recipes.json")
+    fetch("recipeBook.json")
       .then((response) => response.json())
       .then((json) => {
         setRecipes(json);

@@ -20,18 +20,37 @@ export function CalorieTracker() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchCaloriesData = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch("calories.json"); // Ensure the file is in the public folder or adjust the path.
+
+        const response = await fetch("calories.json");
         if (!response.ok) throw new Error("Failed to fetch calorie data");
 
-        const data: Recipe[] = await response.json();
-        setRecipes(data);
+        const jsonData: Recipe[] = await response.json();
 
-        // Calculate the total calories for the daily goal
-        const totalCalories = data.reduce(
-          (sum, recipe) => sum + recipe.calories,
+        const trackedRecipes = JSON.parse(
+          localStorage.getItem("trackedRecipes") || "[]"
+        );
+
+        const allRecipes = [...trackedRecipes, ...jsonData];
+
+        // Remove duplicates (if needed)
+        const uniqueRecipes = allRecipes.reduce(
+          (acc: Recipe[], recipe: Recipe) => {
+            if (!acc.some((r: Recipe) => r.id === recipe.id)) {
+              acc.push(recipe);
+            }
+            return acc;
+          },
+          [] as Recipe[]
+        );
+
+        setRecipes(uniqueRecipes);
+
+        // Calculate total calories for daily goal
+        const totalCalories = uniqueRecipes.reduce(
+          (sum: number, recipe: Recipe) => sum + recipe.calories,
           0
         );
         setDailyGoal(totalCalories);
@@ -42,11 +61,19 @@ export function CalorieTracker() {
       }
     };
 
-    fetchCaloriesData();
+    fetchData();
   }, []);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
+
+  const handleClick = (id: number) => {
+    // Save the recipe id to local storage
+    localStorage.setItem("selectedRecipeId", id.toString());
+
+    // Redirect to the Recipe page
+    navigate("/Recipe");
+  };
 
   return (
     <div>
@@ -61,6 +88,7 @@ export function CalorieTracker() {
         {/* Calories Tracker */}
         <section className="calories-overview">
           <h1>Calories Tracker</h1>
+          <p>This week Progress: 9000</p>
           <p>Last week Calories: 11,200</p>
         </section>
 
@@ -68,13 +96,10 @@ export function CalorieTracker() {
           <h3>Recently Tracked Recipes:</h3>
           <div className="recipes-grid">
             {recipes.map((recipe) => (
-              <div key={recipe.id} className="recipe-card"
-                style={{
-                  backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${recipe.image})`,
-                  backgroundSize: "cover", // Ensures the image covers the entire div
-                  backgroundPosition: "center", // Centers the image
-                  backgroundRepeat: "no-repeat", // Prevents tiling
-                }}
+              <div
+                key={recipe.id}
+                className="recipe-card"
+                onClick={() => handleClick(recipe.id)}
               >
                 <div className="recipe-info">
                   <p>

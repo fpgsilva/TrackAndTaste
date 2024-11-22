@@ -1,0 +1,28 @@
+[{
+    "id": 8,
+    "title": "Fruit Smoothie",
+    "ingredients": ["banana", "berries", "yogurt", "honey"],
+    "instructions": "Blend all ingredients until smooth.",
+    "time": 5,
+    "difficulty": "easy",
+    "type": "drink",
+    "vegan": false,
+    "glutenFree": true,
+    "description": "A refreshing and healthy drink made with fresh fruits.",
+    "rating": "⭐⭐⭐⭐⭐",
+    "calories": 150
+  },
+  {
+    "id": 9,
+    "title": "Roasted Veggie Bowl",
+    "ingredients": ["sweet potato", "zucchini", "chickpeas", "olive oil", "spices"],
+    "instructions": "Roast vegetables and chickpeas, serve in a bowl.",
+    "time": 40,
+    "difficulty": "medium",
+    "type": "main",
+    "vegan": true,
+    "glutenFree": true,
+    "description": "A wholesome and satisfying bowl with roasted veggies and spices.",
+    "rating": "⭐⭐⭐",
+    "calories": 300
+  }]
