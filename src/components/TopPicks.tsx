@@ -31,7 +31,7 @@ const TopPicks = () => {
 
   const handleScrollRight = () => {
     setOffset(
-        (prevOffset) => (prevOffset + 1 + recipes.length) % recipes.length
+      (prevOffset) => (prevOffset + 1 + recipes.length) % recipes.length
     );
   };
 
@@ -45,8 +45,9 @@ const TopPicks = () => {
 
   return (
     <div className="carousel-container">
-      <header className="carousel-header">Top Picks of the Week</header>
+      <h1 className="carousel-header">Top Picks of the Week</h1>
       <p></p>
+
       <button className="carousel-button left" onClick={handleScrollLeft}>
         &#8249;
       </button>
@@ -60,15 +61,16 @@ const TopPicks = () => {
           }}
         >
           {recipes.map((recipe) => (
-            <div className="carousel-card" 
-            key={recipe.id}
-            onClick={() => handleClick(recipe.id)}
-            style={{
+            <div
+              className="carousel-card"
+              key={recipe.id}
+              onClick={() => handleClick(recipe.id)}
+              style={{
                 backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${recipe.image})`,
                 backgroundSize: "cover", // Ensures the image covers the entire div
                 backgroundPosition: "center", // Centers the image
                 backgroundRepeat: "no-repeat", // Prevents tiling
-            }}
+              }}
             >
               <h3>{recipe.title}</h3>
               <p>
