@@ -11,7 +11,7 @@
 
 
 .scroll-container1 {
-    max-height: 480px; /* Adjust the height as needed */
+    max-height: 43%; /* Adjust the height as needed */
     overflow-y: auto; /* Enable vertical scrolling */
     padding: 10px; /* Optional: for spacing */
     border: 1px solid #ddd; /* Optional: for visual clarity */

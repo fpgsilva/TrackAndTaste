@@ -100,6 +100,12 @@ export function CalorieTracker() {
                 key={recipe.id}
                 className="recipe-card"
                 onClick={() => handleClick(recipe.id)}
+                style={{
+                  backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${recipe.image})`,
+                  backgroundSize: "cover", // Ensures the image covers the entire div
+                  backgroundPosition: "center", // Centers the image
+                  backgroundRepeat: "no-repeat", // Prevents tiling
+                }}
               >
                 <div className="recipe-info">
                   <p>
