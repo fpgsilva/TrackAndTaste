@@ -96,12 +96,10 @@ export function Recipe() {
   if (!recipeData) return <p>No recipe data available.</p>;
 
   return (
-    <div>
-      <div className="back-container1">
-        <button className="back-button" onClick={() => navigate(-1)}>
-          ← Go Back
-        </button>
-      </div>
+    <div className="scroll-container2">
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ← Go Back
+      </button>
       <div className="recipe-details1">
         <h1>{recipeData.title}</h1>
         <div className="recipe-meta">
@@ -119,9 +117,7 @@ export function Recipe() {
 
         <div className="actions">
           <button onClick={handleSaveRecipe}>{saveButtonText}</button>
-          <button onClick={() => console.log("Start Steps")}>
-            Start Steps
-          </button>
+          <button onClick={() => navigate("/step")}>Start Steps</button>
           <button onClick={handleTrackCalories}>{buttonText}</button>
         </div>
 
