@@ -54,6 +54,12 @@ export function Recipebook() {
                 className="recipe-card"
                 key={result.id}
                 onClick={() => handleClick(result.id)}
+                style={{
+                  backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${result.image})`,
+                  backgroundSize: "cover", // Ensures the image covers the entire div
+                  backgroundPosition: "center", // Centers the image
+                  backgroundRepeat: "no-repeat", // Prevents tiling
+                }}
               >
                 <h3>{result.title}</h3>
                 <p>
@@ -64,6 +70,9 @@ export function Recipebook() {
                 </p>
                 <p>
                   <strong>Difficulty:</strong> {result.difficulty}
+                </p>
+                <p>
+                  <strong>Rating</strong> {result.rating}
                 </p>
               </div>
             ))}

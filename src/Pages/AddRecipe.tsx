@@ -14,7 +14,7 @@ export function AddRecipe() {
     description: "",
     ingredients: "",
     steps: [] as string[], // Store steps as an array of strings
-    image: null as File | null, // New state for storing the image file
+    image: "", // New state for storing the image file
   });
 
   const handleChange = (
@@ -34,8 +34,18 @@ export function AddRecipe() {
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setRecipe({ ...recipe, image: e.target.files[0] });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (reader.result) {
+          setRecipe({ ...recipe, image: reader.result as string });
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
     }
+    
+    console.log(recipe.image)
+    console.log("------")
+
   };
 
   const handleStepChange = (index: number, value: string) => {
@@ -68,6 +78,10 @@ export function AddRecipe() {
     const updatedRecipes = [...existingRecipes, newRecipe];
     localStorage.setItem("userRecipes", JSON.stringify(updatedRecipes));
 
+    console.log(newRecipe)
+    console.log("--------")
+    console.log(localStorage.getItem("userRecipes"))
+
     alert("Recipe Created!");
     navigate("/recipebook"); // Navigate back to the Recipebook page
   };
@@ -82,7 +96,7 @@ export function AddRecipe() {
       description: "",
       ingredients: "",
       steps: [],
-      image: null,
+      image: "",
     });
   };
 
@@ -183,7 +197,7 @@ export function AddRecipe() {
           <div className="image-square">
             {recipe.image ? (
               <img
-                src={URL.createObjectURL(recipe.image)}
+                src={recipe.image}
                 alt="Recipe Preview"
                 className="image-preview"
               />
