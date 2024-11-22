@@ -14,6 +14,13 @@
 }
 
 
+.scroll-container2 {
+  max-height: 43%; /* Adjust the height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 10px; /* Optional: for spacing */
+  border: 1px solid #ddd; /* Optional: for visual clarity */
+  background-color: #f9f9f9; /* Optional: background color */
+}
 
 /* Recipe Title and Metadata */
 .recipe-details1 h1 {

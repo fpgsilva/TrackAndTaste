@@ -8,6 +8,7 @@ import { Settings } from "./Pages/Settings";
 import { CalorieTracker } from "./Pages/CalorieTracker";
 import { SearchResults } from "./Pages/SearchResults";
 import { Recipe } from "./Pages/Recipe";
+import StepPage from "./Pages/StepPage"; // Import your StepPage component
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/SearchResults" element={<SearchResults />}></Route>
           <Route path="/Recipe" element={<Recipe />}></Route>
           <Route path="/Settings" element={<Settings />}></Route>
+          <Route path="/Step" element={<StepPage />} /> {/* Step page route */}
         </Route>
       </Routes>
     </Router>
