@@ -15,14 +15,37 @@ export function SearchResults() {
   const [filter, setFilter] = useState<string>("all");
 
   useEffect(() => {
-    fetch("recipes.json")
-      .then((response) => response.json())
-      .then((json) => {
-        setRecipes(json);
-        filterResults(json, query, filter); // Apply initial filters
-      })
-      .catch((error) => console.error("Error fetching recipes:", error));
-  }, []);
+    const fetchRecipes = async () => {
+      try {
+        // Fetch all recipe files in parallel
+        const files = ["recipes.json", "calories.json", "recent.json", "recipeBook.json", "user-recipes.json"];
+        const fetchPromises = files.map((file) => fetch(file).then((res) => res.json()));
+        const jsonResults = await Promise.all(fetchPromises);
+
+        // Combine all fetched recipes
+        let combinedRecipes: any[] = jsonResults.flat();
+
+        // Retrieve user recipes from local storage
+        const localUserRecipes = localStorage.getItem("userRecipes");
+        if (localUserRecipes) {
+          const parsedUserRecipes = JSON.parse(localUserRecipes);
+          combinedRecipes = combinedRecipes.concat(parsedUserRecipes);
+        }
+
+        const uniqueRecipes = Array.from(
+          new Map(combinedRecipes.map((recipe) => [recipe.id, recipe])).values()
+        );
+
+        // Set recipes and apply initial filters
+        setRecipes(uniqueRecipes);
+        filterResults(uniqueRecipes, query, filter);
+      } catch (error) {
+        console.error("Error fetching recipes:", error);
+      }
+    };
+
+    fetchRecipes();
+  }, [filter]);
 
   // Filter recipes based on query
   const filterResults = (recipeList: any[], query: string, filter: string) => {

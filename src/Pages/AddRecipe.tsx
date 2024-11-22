@@ -6,16 +6,19 @@ import Navbar from "../components/Navbar";
 export function AddRecipe() {
   const navigate = useNavigate();
   const stepsContainerRef = useRef<HTMLDivElement>(null); // Reference to the steps container
+
   const [recipe, setRecipe] = useState({
     title: "",
     time: "",
     difficulty: "",
     calories: "",
     description: "",
-    ingredients: "",
+    ingredients: [] as string[],
     steps: [] as string[], // Store steps as an array of strings
     image: "", // New state for storing the image file
   });
+
+  const [ingredientsInput, setIngredientsInput] = React.useState(recipe.ingredients.join(", "));
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -23,13 +26,25 @@ export function AddRecipe() {
     >
   ) => {
     const { name, value } = e.target;
-
+  
     if (name === "calories") {
       const numericValue = Math.max(0, parseInt(value) || 0); // Ensure value is at least 0
       setRecipe({ ...recipe, [name]: numericValue.toString() });
+    } else if (name === "ingredients") {
+      setIngredientsInput(value); // Update the temporary input state
     } else {
       setRecipe({ ...recipe, [name]: value });
     }
+  };
+  
+  const handleBlur = () => {
+    // Transform the input string into an array on blur
+    const ingredientsArray = ingredientsInput
+      .split(",")
+      .map((ingredient) => ingredient.trim())
+      .filter((ingredient) => ingredient !== "");
+  
+    setRecipe({ ...recipe, ingredients: ingredientsArray });
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +101,7 @@ export function AddRecipe() {
       difficulty: "",
       calories: "",
       description: "",
-      ingredients: "",
+      ingredients: [],
       steps: [],
       image: "",
     });
@@ -177,8 +192,9 @@ export function AddRecipe() {
             <span>Ingredients:</span>
             <textarea
               name="ingredients"
-              value={recipe.ingredients}
+              value={ingredientsInput} // Use the temporary input state
               onChange={handleChange}
+              onBlur={handleBlur} // Update the ingredients array when input loses focus
               placeholder="List all ingredients"
               className="no-resize"
             ></textarea>
