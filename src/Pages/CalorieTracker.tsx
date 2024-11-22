@@ -49,54 +49,58 @@ export function CalorieTracker() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="calories-tracker">
-      {/* Header */}
-      <header className="back-container">
-        <button onClick={() => navigate(-1)} className="back-button">
-          ← Go back
-        </button>
-      </header>
+    <div>
+      <div className="calories-tracker">
+        {/* Header */}
+        <header className="back-container">
+          <button onClick={() => navigate(-1)} className="back-button">
+            ← Go back
+          </button>
+        </header>
 
-      {/* Calories Tracker */}
-      <section className="calories-overview">
-        <h1>Calories Tracker</h1>
-        <p>Last week Calories: 11,200</p>
-      </section>
+        {/* Calories Tracker */}
+        <section className="calories-overview">
+          <h1>Calories Tracker</h1>
+          <p>Last week Calories: 11,200</p>
+        </section>
 
-      <section className="recently-tracked">
-        <h3>Recently Tracked Recipes:</h3>
-        <div className="recipes-grid">
-          {recipes.map((recipe) => (
-            <div key={recipe.id} className="recipe-card">
-              <img
-                src={recipe.image}
-                alt={recipe.title}
-                className="recipe-image"
-              />
-              <div className="recipe-info">
-                <p>
-                  <strong>{recipe.title}</strong>
-                </p>
-                <p>Calories: {recipe.calories}</p>
-                <p>Rating: {recipe.rating}</p>
+        <section className="recently-tracked">
+          <h3>Recently Tracked Recipes:</h3>
+          <div className="recipes-grid">
+            {recipes.map((recipe) => (
+              <div key={recipe.id} className="recipe-card"
+                style={{
+                  backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${recipe.image})`,
+                  backgroundSize: "cover", // Ensures the image covers the entire div
+                  backgroundPosition: "center", // Centers the image
+                  backgroundRepeat: "no-repeat", // Prevents tiling
+                }}
+              >
+                <div className="recipe-info">
+                  <p>
+                    <strong>{recipe.title}</strong>
+                  </p>
+                  <p>Calories: {recipe.calories}</p>
+                  <p>Rating: {recipe.rating}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
 
-      {/* Daily Goal */}
-      <section className="daily-goal">
-        <p>
-          Daily Goal Progress: {dailyGoal}/{2000}
-        </p>
-        <div className="progress-bar">
-          <div
-            className="progress"
-            style={{ width: `${(dailyGoal / 2000) * 100}%` }}
-          ></div>
-        </div>
-      </section>
+        {/* Daily Goal */}
+        <section className="daily-goal">
+          <p>
+            Daily Goal Progress: {dailyGoal}/{2000}
+          </p>
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: `${(dailyGoal / 2000) * 100}%` }}
+            ></div>
+          </div>
+        </section>
+      </div>
       <Navbar />
     </div>
   );

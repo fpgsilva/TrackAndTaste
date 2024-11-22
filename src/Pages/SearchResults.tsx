@@ -99,6 +99,12 @@ export function SearchResults() {
                 className="recipe-card"
                 key={recipe.id}
                 onClick={() => handleClick(recipe.id)}
+                style={{
+                  backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${recipe.image})`,
+                  backgroundSize: "cover", // Ensures the image covers the entire div
+                  backgroundPosition: "center", // Centers the image
+                  backgroundRepeat: "no-repeat", // Prevents tiling
+                }}
               >
                 <h3>{recipe.title}</h3>
                 <p>
