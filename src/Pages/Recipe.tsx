@@ -27,7 +27,6 @@ export function Recipe() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [review, setReview] = useState<string>(""); // For reviews
   const [buttonText, setButtonText] = useState<string>("Track Calories"); // For track calories button text
   const [saveButtonText, setSaveButtonText] = useState<string>(
     "Save to Recipe Book"
@@ -39,8 +38,6 @@ export function Recipe() {
     navigate("/RecipeReviews");
   };
 
-
-  
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
@@ -56,23 +53,21 @@ export function Recipe() {
 
         const files = ["recipes.json", "calories.json", "recent.json", "recipeBook.json", "user-recipes.json"];
         const fetchPromises = files.map((file) => fetch(file).then((res) => res.json()));
-        const response = await Promise.all(fetchPromises);
+        const jsonResults = await Promise.all(fetchPromises);
 
-        if (!response) throw new Error("Failed to fetch data.json");
+        let combinedRecipes: any[] = jsonResults.flat();
 
-        let combinedRecipes: any[] = response.flat();
-
-        
         const localUserRecipes = localStorage.getItem("userRecipes");
         if (localUserRecipes) {
           const parsedUserRecipes = JSON.parse(localUserRecipes);
           combinedRecipes = combinedRecipes.concat(parsedUserRecipes);
         }
 
-        const data: RecipeInt[] = await response;
-        const targetObject = data.find((obj: RecipeInt) => obj.id === parsedID);
-        console.log(parsedID);
-        console.log(typeof parsedID);
+        const uniqueRecipes = Array.from(
+          new Map(combinedRecipes.map((recipe) => [recipe.id, recipe])).values()
+        );
+
+        const targetObject = uniqueRecipes.find((obj: any) => obj.id === parsedID);
         if (!targetObject)
           throw new Error(`Recipe with ID ${parsedID} not found`);
 

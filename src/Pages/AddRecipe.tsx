@@ -8,6 +8,7 @@ export function AddRecipe() {
   const stepsContainerRef = useRef<HTMLDivElement>(null); // Reference to the steps container
 
   const [recipe, setRecipe] = useState({
+    id: 0,
     title: "",
     time: "",
     difficulty: "",
@@ -83,7 +84,7 @@ export function AddRecipe() {
     );
     const newRecipe = {
       ...recipe,
-      id: Date.now().toString(), // Generate a unique ID
+      id: Date.now(), // Generate a unique ID
     };
 
     const updatedRecipes = [...existingRecipes, newRecipe];
@@ -96,6 +97,7 @@ export function AddRecipe() {
   const handleContinueLater = () => alert("Recipe Saved for Later!");
   const handleDelete = () => {
     setRecipe({
+      id: 0,
       title: "",
       time: "",
       difficulty: "",
