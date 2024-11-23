@@ -1,0 +1,81 @@
+[
+    {
+      "reviewId": 1,
+      "recipeId": 0,
+      "rating": 4,
+      "comment": "Tasty and easy to make! Would try again."
+    },
+    {
+      "reviewId": 2,
+      "recipeId": 1,
+      "rating": 5,
+      "comment": "Absolutely loved it! Perfect for a family dinner."
+    },
+    {
+      "reviewId": 3,
+      "recipeId": 1,
+      "rating": 3,
+      "comment": "It was okay, but I expected more flavor."
+    },
+    {
+      "reviewId": 4,
+      "recipeId": 2,
+      "rating": 2,
+      "comment": "Not my favorite. A bit bland."
+    },
+    {
+      "reviewId": 5,
+      "recipeId": 3,
+      "rating": 5,
+      "comment": "This recipe was a hit! Everyone loved it."
+    },
+    {
+      "reviewId": 6,
+      "recipeId": 4,
+      "rating": 4,
+      "comment": "Very good, but a little time-consuming."
+    },
+    {
+      "reviewId": 7,
+      "recipeId": 4,
+      "rating": 5,
+      "comment": "Absolutely delicious. Will make it again!"
+    },
+    {
+      "reviewId": 8,
+      "recipeId": 5,
+      "rating": 3,
+      "comment": "Decent, but the instructions could be clearer."
+    },
+    {
+      "reviewId": 9,
+      "recipeId": 6,
+      "rating": 4,
+      "comment": "Loved the texture! Great recipe overall."
+    },
+    {
+      "reviewId": 10,
+      "recipeId": 7,
+      "rating": 2,
+      "comment": "Not what I expected. Too salty."
+    },
+    {
+      "reviewId": 11,
+      "recipeId": 8,
+      "rating": 5,
+      "comment": "Fantastic! This is going into my favorites."
+    },
+    {
+      "reviewId": 12,
+      "recipeId": 9,
+      "rating": 4,
+      "comment": "Pretty good, but could use more spices."
+    },
+    {
+      "reviewId": 13,
+      "recipeId": 9,
+      "rating": 3,
+      "comment": "It was alright. Not bad, not great."
+    }
+  ]
+  
