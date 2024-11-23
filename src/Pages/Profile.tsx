@@ -7,7 +7,7 @@ export function Profile() {
 
   return (
     <div className="profile-container">
-      <img src="/user-icon.png" alt="User Icon" className="profile-image" />
+      <img src="user-icon.png" alt="User Icon" className="profile-image" />
       <div className="profile-links">
         <Link to="/Recipebook">Recipe Book</Link>
         <Link to="/AddRecipe">Add Recipe</Link>
