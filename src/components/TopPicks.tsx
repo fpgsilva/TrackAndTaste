@@ -80,7 +80,7 @@ const TopPicks = () => {
                 <strong>Difficulty:</strong> {recipe.difficulty}
               </p>
               <p>
-                <strong>Ratting:{recipe.rating}</strong>
+                <strong>Rating:{recipe.rating}</strong>
               </p>
             </div>
           ))}

@@ -1,0 +1,255 @@
+Recipe.css
+.test {
+  width: 100vw;
+  height: 80vh;
+}
+
+/* General Container Styling */
+.recipe-details1 {
+  
+  padding: 20px;
+  overflow: hidden;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-container1 {
+  position: relative; /* Keeps the element in the flow */
+  margin-top: 15vh; /* Pushes it down within its container */
+  display: flex;
+}
+
+
+/* Styling for the Go Back button with border */
+.back-button1 {
+
+    display: flex;
+    align-items: center;  /* Center the content vertically */
+    padding: 10px 15px;
+    border: 2px solid #030303;  /* Border color */
+    border-radius: 2px;
+    background: #ffffff;  /* White background */
+    color: #000000;  /* Text and arrow color */
+    transition: background-color 0.3s, border-color 0.3s;
+    text-align: center;
+  }
+  
+  /* Hover effect for Go Back button */
+  .back-button1:hover {
+    background: #f1f1f1;
+    border-color: #000000;
+  }
+  
+
+/* Recipe Title and Metadata */
+.recipe-details1 h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.recipe-meta1 {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Description */
+.recipe-details1 p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Ingredients Section */
+.ingredients h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.ingredients ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ingredients li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Actions Section (Buttons) */
+.actions {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.actions button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.actions button:hover {
+  background-color: #218838;
+}
+
+/* Images Section */
+.images h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.image-grid {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.image-grid img {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.more-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  font-size: 14px;
+  color: #555;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Ratings Section */
+.ratings h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.ratings button {
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.ratings button:hover {
+  background-color: #e0a800;
+}
+
+/* Review Section */
+.review h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.review textarea {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  resize: none;
+}
+
+.review textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.review button {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.review button:hover {
+  background-color: #138496;
+}
+
+/* Responsive Design */
+@media (max-width: 1080px) {
+  .recipe-meta {
+    flex-direction: column;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .image-grid {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .image-grid img,
+  .more-images {
+    width: 45%;
+    height: 100px;
+  }
+
+  /* Star Rating */
+.star-rating {
+  display: flex;
+  gap: 1px;
+  height: 100vh;
+  cursor: pointer;
+}
+/*color: grey; filter: grayscale(100%)*/
+input[type="radio"] {
+  display: none;
+}
+.star {
+  display: inline-block;
+  font-size: 30px; /* Adjust size if needed */
+  transition: transform 0.2s ease, color 0.2s ease;
+  color: grey; /* Default greyscale color */
+}
+
+.star.hovered {
+  transform: scale(1.2); /* Enlarge on hover */
+  color: #FFD700; /* Gold for hovered stars */
+}
+
+.star.selected {
+  transform: scale(1); /* Normal scale */
+  color: #FFD700; /* Gold for selected stars */
+}
+
+.star.unselected {
+  transform: scale(1); /* Normal scale */
+  color: grey; /* Greyscale for unselected stars */
+}
+
+
+
+}

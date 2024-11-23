@@ -1,5 +1,10 @@
 
 /* General Container Styling */
+
+.scroll-container2 {
+  overflow-y: scroll;
+}
+
 .recipe-details1 {
   width: 100vw;
   height: 50h;
@@ -145,6 +150,11 @@
   }
 
   .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .see-reviews {
     flex-direction: column;
     gap: 10px;
   }

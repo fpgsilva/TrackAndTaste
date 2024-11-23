@@ -35,6 +35,11 @@ export function Recipe() {
 
   const navigate = useNavigate();
 
+  const seeReviews = () => {
+    navigate("/RecipeReviews");
+  };
+
+
   
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -66,6 +71,8 @@ export function Recipe() {
 
         const data: RecipeInt[] = await response;
         const targetObject = data.find((obj: RecipeInt) => obj.id === parsedID);
+        console.log(parsedID);
+        console.log(typeof parsedID);
         if (!targetObject)
           throw new Error(`Recipe with ID ${parsedID} not found`);
 
@@ -81,8 +88,7 @@ export function Recipe() {
   }, []);
 
   const handleReviewSubmit = () => {
-    console.log("User review:", review);
-    setReview("");
+    navigate("/Review");
   };
 
   const handleTrackCalories = () => {
@@ -132,6 +138,7 @@ export function Recipe() {
           <button onClick={handleSaveRecipe}>{saveButtonText}</button>
           <button onClick={() => navigate("/step")}>Start Steps</button>
           <button onClick={handleTrackCalories}>{buttonText}</button>
+          <button onClick={seeReviews}>See Reviews</button>
         </div>
 
         <div className="submit">
