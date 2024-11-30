@@ -84,10 +84,20 @@ export function Recipe() {
   };
 
   const handleTrackCalories = () => {
+    if (!recipeData) {
+    console.error("Error: recipeData is null or undefined");
+    return;
+    }
+
+    const instanceId = `${recipeData.id}-${new Date().getTime()}`;
+
+    const recipeWithInstanceId = { ...recipeData, instanceId };
+
     const trackedRecipes = JSON.parse(
       localStorage.getItem("trackedRecipes") || "[]"
     );
-    const updatedRecipes = [...trackedRecipes, recipeData]; // Add the current recipe
+
+    const updatedRecipes = [...trackedRecipes, recipeWithInstanceId]; // Add the current recipe
     localStorage.setItem("trackedRecipes", JSON.stringify(updatedRecipes));
     setButtonText("Calories Tracked x" + buttonClickCount +"!");
     setButtonClickCount(buttonClickCount + 1);

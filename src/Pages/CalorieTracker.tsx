@@ -4,6 +4,7 @@ import "./Calories.css";
 import Navbar from "../components/Navbar";
 
 interface Recipe {
+  instanceId: string;
   id: number;
   title: string;
   calories: number;
@@ -29,8 +30,7 @@ export function CalorieTracker() {
           localStorage.getItem("trackedRecipes") || "[]"
         );
 
-        const baseWeeklyProgress =
-          parseInt(localStorage.getItem("weeklyProgress") || "9000");
+        const baseWeeklyProgress = parseInt("9000");
 
         const allRecipes = [...trackedRecipes];
 
@@ -77,28 +77,22 @@ export function CalorieTracker() {
     localStorage.setItem("weeklyProgress", updatedWeeklyProgress.toString());
   };
 
-  const removeRecipe = (id: number) => {
-    const indexToRemove = recipes.findIndex((recipe) => recipe.id === id);
+  const removeRecipe = (instanceId: string) => {
+    const recipeToRemove = recipes.find((recipe) => recipe.instanceId === instanceId);
+    if (!recipeToRemove) return;
 
-    if (indexToRemove !== -1) {
-      const removedCalories = recipes[indexToRemove].calories;
-      const updatedRecipes = [
-        ...recipes.slice(0, indexToRemove),
-        ...recipes.slice(indexToRemove + 1),
-      ];
-    
-      setRecipes(updatedRecipes);
+    const updatedRecipes = recipes.filter((recipe) => recipe.instanceId !== instanceId);
 
-      localStorage.setItem("trackedRecipes", JSON.stringify(updatedRecipes));
+    setRecipes(updatedRecipes);
 
-      const totalCalories = updatedRecipes.reduce(
-        (sum: number, recipe: Recipe) => sum + recipe.calories,
-        0
-      );
-      setDailyGoal(totalCalories);
-
-      updateWeeklyProgress(-removedCalories);
-    }
+    localStorage.setItem("trackedRecipes", JSON.stringify(updatedRecipes));
+  
+    const totalCalories = updatedRecipes.reduce(
+      (sum: number, recipe: Recipe) => sum + recipe.calories,
+      0
+    );
+    setDailyGoal(totalCalories);
+    updateWeeklyProgress(-(recipeToRemove.calories));
   };
 
   return (
@@ -117,40 +111,7 @@ export function CalorieTracker() {
           <p>This week Progress: {weeklyProgress}</p>
           <p>Last week Calories: 11,200</p>
         </section>
-
-        <section className="recently-tracked">
-          <h3>Recently Tracked Recipes:</h3>
-          <div className="recipes-grid">
-            {recipes.map((recipe) => (
-              <div
-                key={recipe.id}
-                className="recipe-card"
-                //  onClick={() => handleClick(recipe.id)}
-                style={{
-                  backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${recipe.image})`,
-                  backgroundSize: "cover", 
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              >
-                <div className="recipe-info">
-                  <p>
-                    <strong>{recipe.title}</strong>
-                  </p>
-                  <p>Calories: {recipe.calories}</p>
-                  <p>Rating: {recipe.rating}</p>
-                </div>
-                <button
-                    onClick={() => removeRecipe(recipe.id)}
-                    className="remove-button"
-                  >
-                    Remove
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
-
+        
         {/* Daily Goal */}
         <section className="daily-goal">
           <p>
@@ -161,6 +122,44 @@ export function CalorieTracker() {
               className="progress"
               style={{ width: `${(dailyGoal / 2000) * 100}%` }}
             ></div>
+          </div>
+        </section>
+
+        <section className="recently-tracked">
+          <h3>Recently Tracked Recipes:</h3>
+          <div className="scroll-container3">
+            <div className="recipes-grid">
+              {recipes.map((recipe) => (
+                <div
+                  key={recipe.instanceId}
+                  className="recipe-card"
+                  onClick={() => handleClick(recipe.id)}
+                  style={{
+                    backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${recipe.image})`,
+                    backgroundSize: "cover", 
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                >
+                  <div className="recipe-info">
+                    <p>
+                      <strong>{recipe.title}</strong>
+                    </p>
+                    <p>Calories: {recipe.calories}</p>
+                    <p>Rating: {recipe.rating}</p>
+                  </div>
+                  <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeRecipe(recipe.instanceId);
+                      }}
+                      className="remove-button"
+                    >
+                      Remove
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </div>
