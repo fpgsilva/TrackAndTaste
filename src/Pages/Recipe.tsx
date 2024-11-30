@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-import "./Recipe.css"; // Ensure to create this stylesheet
+import "./Recipe.css";
 
 // Define a type for the recipe objects
 interface RecipeInt {
@@ -10,8 +10,8 @@ interface RecipeInt {
   ingredients: string[];
   instructions: string;
   time: number;
-  difficulty: "easy" | "medium" | "hard"; // Restricted to specific values
-  type: "main" | "side" | "dessert"; // Add other types as needed
+  difficulty: "easy" | "medium" | "hard"; 
+  type: "main" | "side" | "dessert";
   vegan: boolean;
   glutenFree: boolean;
   calories: number;
@@ -20,13 +20,12 @@ interface RecipeInt {
 }
 
 export function Recipe() {
-  const [recipeID, setRecipeID] = useState<number | null>(null);
   const [recipeData, setRecipeData] = useState<RecipeInt | null>(null);
 
-  recipeID != null;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [buttonClickCount, setButtonClickCount] = useState<number>(1);
   const [buttonText, setButtonText] = useState<string>("Track Calories"); // For track calories button text
   const [saveButtonText, setSaveButtonText] = useState<string>(
     "Save to Recipe Book"
@@ -48,8 +47,6 @@ export function Recipe() {
         const parsedID = parseInt(storedRecipeID, 10);
         if (isNaN(parsedID))
           throw new Error("Invalid recipe ID stored in localStorage");
-
-        setRecipeID(parsedID);
 
         const files = ["recipes.json", "calories.json", "recent.json", "recipeBook.json", "user-recipes.json"];
         const fetchPromises = files.map((file) => fetch(file).then((res) => res.json()));
@@ -92,7 +89,8 @@ export function Recipe() {
     );
     const updatedRecipes = [...trackedRecipes, recipeData]; // Add the current recipe
     localStorage.setItem("trackedRecipes", JSON.stringify(updatedRecipes));
-    setButtonText("Calories Tracked!");
+    setButtonText("Calories Tracked x" + buttonClickCount +"!");
+    setButtonClickCount(buttonClickCount + 1);
   };
 
   // New method for saving recipe

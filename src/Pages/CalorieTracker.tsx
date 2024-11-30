@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Calories.css"; // Styles for this component
+import "./Calories.css";
 import Navbar from "../components/Navbar";
 
 interface Recipe {
@@ -16,6 +16,7 @@ export function CalorieTracker() {
 
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [dailyGoal, setDailyGoal] = useState<number>(0);
+  const [weeklyProgress, setWeeklyProgress] = useState<number>(9000);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -24,43 +25,38 @@ export function CalorieTracker() {
       try {
         setLoading(true);
 
-        const response = await fetch("calories.json");
-        if (!response.ok) throw new Error("Failed to fetch calorie data");
-
-        const jsonData: Recipe[] = await response.json();
-
         const trackedRecipes = JSON.parse(
           localStorage.getItem("trackedRecipes") || "[]"
         );
 
-        const allRecipes = [...trackedRecipes, ...jsonData];
+        const baseWeeklyProgress =
+          parseInt(localStorage.getItem("weeklyProgress") || "9000");
 
-        // Remove duplicates (if needed)
-        const uniqueRecipes = allRecipes.reduce(
-          (acc: Recipe[], recipe: Recipe) => {
-            if (!acc.some((r: Recipe) => r.id === recipe.id)) {
-              acc.push(recipe);
-            }
-            return acc;
-          },
-          [] as Recipe[]
-        );
+        const allRecipes = [...trackedRecipes];
 
-        setRecipes(uniqueRecipes);
+        setRecipes(allRecipes);
 
         // Calculate total calories for daily goal
-        const totalCalories = uniqueRecipes.reduce(
+        const totalCalories = allRecipes.reduce(
           (sum: number, recipe: Recipe) => sum + recipe.calories,
           0
         );
         setDailyGoal(totalCalories);
+
+        const updatedWeeklyProgress =
+          baseWeeklyProgress +
+          trackedRecipes.reduce(
+            (sum: number, recipe: Recipe) => sum + recipe.calories,
+            0
+          );
+        setWeeklyProgress(updatedWeeklyProgress);
       } catch (err: any) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-
+    
     fetchData();
   }, []);
 
@@ -68,11 +64,41 @@ export function CalorieTracker() {
   if (error) return <p>Error: {error}</p>;
 
   const handleClick = (id: number) => {
-    // Save the recipe id to local storage
+    
     localStorage.setItem("selectedRecipeId", id.toString());
 
     // Redirect to the Recipe page
     navigate("/Recipe");
+  };  
+
+  const updateWeeklyProgress = (newCalories: number) => {
+    const updatedWeeklyProgress = weeklyProgress + newCalories;
+    setWeeklyProgress(updatedWeeklyProgress);
+    localStorage.setItem("weeklyProgress", updatedWeeklyProgress.toString());
+  };
+
+  const removeRecipe = (id: number) => {
+    const indexToRemove = recipes.findIndex((recipe) => recipe.id === id);
+
+    if (indexToRemove !== -1) {
+      const removedCalories = recipes[indexToRemove].calories;
+      const updatedRecipes = [
+        ...recipes.slice(0, indexToRemove),
+        ...recipes.slice(indexToRemove + 1),
+      ];
+    
+      setRecipes(updatedRecipes);
+
+      localStorage.setItem("trackedRecipes", JSON.stringify(updatedRecipes));
+
+      const totalCalories = updatedRecipes.reduce(
+        (sum: number, recipe: Recipe) => sum + recipe.calories,
+        0
+      );
+      setDailyGoal(totalCalories);
+
+      updateWeeklyProgress(-removedCalories);
+    }
   };
 
   return (
@@ -88,7 +114,7 @@ export function CalorieTracker() {
         {/* Calories Tracker */}
         <section className="calories-overview">
           <h1>Calories Tracker</h1>
-          <p>This week Progress: 9000</p>
+          <p>This week Progress: {weeklyProgress}</p>
           <p>Last week Calories: 11,200</p>
         </section>
 
@@ -99,12 +125,12 @@ export function CalorieTracker() {
               <div
                 key={recipe.id}
                 className="recipe-card"
-                onClick={() => handleClick(recipe.id)}
+                //  onClick={() => handleClick(recipe.id)}
                 style={{
                   backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${recipe.image})`,
-                  backgroundSize: "cover", // Ensures the image covers the entire div
-                  backgroundPosition: "center", // Centers the image
-                  backgroundRepeat: "no-repeat", // Prevents tiling
+                  backgroundSize: "cover", 
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
                 }}
               >
                 <div className="recipe-info">
@@ -114,6 +140,12 @@ export function CalorieTracker() {
                   <p>Calories: {recipe.calories}</p>
                   <p>Rating: {recipe.rating}</p>
                 </div>
+                <button
+                    onClick={() => removeRecipe(recipe.id)}
+                    className="remove-button"
+                  >
+                    Remove
+                </button>
               </div>
             ))}
           </div>

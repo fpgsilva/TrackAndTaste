@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom";
-import './Review.css'; // Import the CSS file
+import './Review.css';
 import Navbar from "../components/Navbar";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
-import React from "react";
 
 
 interface RecipeInt {
