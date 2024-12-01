@@ -6,6 +6,10 @@ import Navbar from "../components/Navbar";
 export function AddRecipe() {
   const navigate = useNavigate();
   const stepsContainerRef = useRef<HTMLDivElement>(null); // Reference to the steps container
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const savedLoginState = localStorage.getItem("isLoggedIn");
+    return savedLoginState ? JSON.parse(savedLoginState) : false;
+  });
 
   const [recipe, setRecipe] = useState({
     id: 0,
@@ -79,6 +83,29 @@ export function AddRecipe() {
   };
 
   const handleCreate = () => {
+    if(!isLoggedIn){
+      alert("Must be Logged In");
+      return;
+    }
+
+  const requiredFields = [
+    { name: "title", value: recipe.title.trim() },
+    { name: "time", value: recipe.time.trim() },
+    { name: "difficulty", value: recipe.difficulty.trim() },
+    { name: "calories", value: recipe.calories.trim() },
+    { name: "description", value: recipe.description.trim() },
+    { name: "ingredients", value: recipe.ingredients.length > 0 ? "valid" : "" },
+    { name: "steps", value: recipe.steps.length > 0 ? "valid" : "" },
+  ];
+
+  const missingFields = requiredFields.filter((field) => !field.value);
+
+  if (missingFields.length > 0) {
+    const fieldNames = missingFields.map((field) => field.name).join(", ");
+    alert(`Please fill out the following fields: ${fieldNames}`);
+    return;
+  }
+
     const existingRecipes = JSON.parse(
       localStorage.getItem("userRecipes") || "[]"
     );
@@ -139,11 +166,12 @@ export function AddRecipe() {
             <label>
               <span>Time:</span>
               <input
-                type="text"
+                type="number"
                 name="time"
                 value={recipe.time}
                 onChange={handleChange}
-                placeholder="e.g., 30 mins"
+                inputMode="numeric"
+                placeholder="Time in minutes, ex. 30"
               />
             </label>
             <label>
@@ -163,16 +191,12 @@ export function AddRecipe() {
               <p></p>
               <span>Calories (kcal):</span>
               <input
-                type="text" // Changed from "number" to "text"
+                type="numer"
                 name="calories"
                 value={recipe.calories}
-                onChange={(e) => {
-                  // Allow only numeric values
-                  const numericValue = e.target.value.replace(/[^0-9]/g, "");
-                  setRecipe({ ...recipe, calories: numericValue });
-                }}
-                inputMode="numeric" // Ensures a numeric keyboard on mobile devices
-                placeholder="e.g., 200"
+                onChange={handleChange}
+                inputMode="numeric"
+                placeholder="ex. 200"
               />
             </label>
           </div>
