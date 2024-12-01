@@ -17,6 +17,7 @@ interface RecipeInt {
   calories: number;
   description: string;
   rating: number;
+  image: string;
 }
 
 export function Recipe() {
@@ -118,35 +119,43 @@ export function Recipe() {
   if (!recipeData) return <p>No recipe data available.</p>;
 
   return (
-    <div className="scroll-container2">
-      <button className="back-button" onClick={() => navigate(-1)}>
-        ← Go Back
-      </button>
-      <div className="recipe-details1">
-        <h1>{recipeData.title}</h1>
-        <div className="recipe-meta">
-          <p>🕒 Time: {recipeData.time} min</p>
-          <p> Difficulty: {recipeData.difficulty}</p>
-          <p>🔥 Calories: {recipeData.calories}</p>
-        </div>
-        <p>{recipeData.description}</p>
-        <p>Rating: {recipeData.rating}</p>
+    <div>
+      <div className="scroll-container2">
+        <button className="back-button" onClick={() => navigate(-1)}>
+          ← Go Back
+        </button>
+        <div className="recipe-details1">
+          <h1>{recipeData.title}</h1>
+          <div className="recipe-meta">
+            <div>
+              <p>🕒 Time: {recipeData.time} min</p>
+              <p> Difficulty: {recipeData.difficulty}</p>
+              <p>🔥 Calories: {recipeData.calories}</p>
+              <p>{recipeData.description}</p>
+              <p>Rating: {recipeData.rating}</p>
+            </div>
+            <img className="recipe-image" 
+              src={recipeData.image} 
+              alt={`Image of ${recipeData.title}`} 
+            />
+          </div>
 
-        <div className="ingredients">
-          <h3>Ingredients</h3>
-          <p>{recipeData.ingredients.join(", ")}</p>
-        </div>
+          <div className="ingredients">
+            <h3>Ingredients</h3>
+            <p>{recipeData.ingredients.join(", ")}</p>
+          </div>
 
-        <div className="actions">
-          <button onClick={handleSaveRecipe}>{saveButtonText}</button>
-          <button onClick={() => navigate("/step")}>Start Steps</button>
-          <button onClick={handleTrackCalories}>{buttonText}</button>
-          <button onClick={seeReviews}>See Reviews</button>
-        </div>
+          <div className="actions">
+            <button onClick={handleSaveRecipe}>{saveButtonText}</button>
+            <button onClick={() => navigate("/step")}>Start Steps</button>
+            <button onClick={handleTrackCalories}>{buttonText}</button>
+            <button onClick={seeReviews}>See Reviews</button>
+          </div>
 
-        <div className="submit">
-          <h1>Review the Recipe!</h1>
-          <button onClick={handleReviewSubmit}>Start Review!</button>
+          <div className="submit">
+            <h1>Review the Recipe!</h1>
+            <button onClick={handleReviewSubmit}>Start Review!</button>
+          </div>
         </div>
       </div>
       <Navbar />

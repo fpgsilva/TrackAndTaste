@@ -15,7 +15,7 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-  
+  max-width: 95vw;
 }
 
 
@@ -143,32 +143,27 @@
   background-color: #138496;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .recipe-meta {
-    flex-direction: column;
-  }
+.recipe-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-left: 20px;
+}
 
-  .actions {
-    flex-direction: column;
-    gap: 10px;
-  }
+.recipe-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
 
-  .see-reviews {
-    flex-direction: column;
-    gap: 10px;
-  }
+.actions {
+  flex-direction: column;
+  gap: 10px;
+}
 
-  .image-grid {
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-
-  
-  .image-grid img,
-  .more-images {
-    width: 45%;
-    height: 100px;
-  }
+.see-reviews {
+  flex-direction: column;
+  gap: 10px;
 }
