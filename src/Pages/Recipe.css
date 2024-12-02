@@ -1,6 +1,4 @@
-
-
-
+/* General Recipe Details Container */
 .recipe-details1 {
   width: 100vw;
   height: 50h;
@@ -14,9 +12,6 @@
   max-width: 95vw;
 }
 
-
-
-/* Recipe Title and Metadata */
 .recipe-details1 h1 {
   font-size: 28px;
   margin-bottom: 10px;
@@ -59,6 +54,7 @@
 /* Actions Section (Buttons) */
 .actions {
   display: flex;
+  flex-direction: column;
   gap: 15px;
   margin: 20px 0;
 }
@@ -109,14 +105,11 @@
   cursor: pointer;
 }
 
-
-
 /* Review Section */
 .review h3 {
   font-size: 20px;
   margin-bottom: 10px;
 }
-
 
 .submit button {
   background-color: #17a2b8;
@@ -155,4 +148,26 @@
 .see-reviews {
   flex-direction: column;
   gap: 10px;
+}
+
+
+.scroll-container2 {
+  margin-top: 60px; 
+  padding: 20px;
+}
+
+.back-button4 {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background: #ffffff;  
+  color: #000000;  
+  transition: background-color 0.3s, border-color 0.3s;
+  text-align: center;
+  margin-bottom: 20px;  
+}
+
+.back-button4:hover {
+  background: #f1f1f1;
+  border-color: #000000;
 }

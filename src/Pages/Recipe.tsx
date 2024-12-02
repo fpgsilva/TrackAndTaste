@@ -128,7 +128,7 @@ export function Recipe() {
   return (
     <div>
       <div className="scroll-container2">
-        <button className="back-button" onClick={() => navigate(-1)}>
+        <button className="back-button4" onClick={() => navigate(-1)}>
           ← Go Back
         </button>
         <div className="recipe-details1">
