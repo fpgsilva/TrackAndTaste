@@ -86,6 +86,7 @@
   height: 100%;
   background-color: #4caf50;
 }
+
 .calories-overview h1,
 .calories-overview p,
 .recently-tracked h3 {
@@ -100,10 +101,10 @@
 }
 
 .back-container {
-  position: fixed; /* Keeps the back button visible */
-  top: 100px; /* Position near the top */
-  left: 20px; /* Position near the left */
-  z-index: 100; /* Ensures it is above other elements */
+  position: fixed; 
+  top: 100px; 
+  left: 20px; 
+  z-index: 100; 
 }
 
 .back-button {
@@ -111,4 +112,25 @@
   border: none;
   background: none;
   cursor: pointer;
+}
+
+
+.scroll-container3 {
+  max-height: 400px; 
+  overflow-y: auto; 
+  overflow-x: hidden; 
+  padding-right: 10px; 
+}
+
+.scroll-container3::-webkit-scrollbar {
+  width: 10px; 
+}
+
+.scroll-container3::-webkit-scrollbar-thumb {
+  background-color: #020202; 
+  border-radius: 10px;
+}
+
+.scroll-container3::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255); 
 }

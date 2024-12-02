@@ -64,9 +64,9 @@ export function Recipebook() {
                 onClick={() => handleClick(result.id)}
                 style={{
                   backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${result.image})`,
-                  backgroundSize: "cover", // Ensures the image covers the entire div
-                  backgroundPosition: "center", // Centers the image
-                  backgroundRepeat: "no-repeat", // Prevents tiling
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
                 }}
               >
                 <h3>{result.title}</h3>

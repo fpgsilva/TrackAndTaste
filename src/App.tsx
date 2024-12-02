@@ -11,7 +11,7 @@ import { Recipe } from "./Pages/Recipe";
 import { Review } from "./Pages/Review";
 import { RecipeReviews } from "./Pages/RecipeReviews";
 
-import StepPage from "./Pages/StepPage"; // Import your StepPage component
+import StepPage from "./Pages/StepPage";
 
 function App() {
   return (
@@ -28,7 +28,6 @@ function App() {
           <Route path="/Settings" element={<Settings />}></Route>
           <Route path="/Review" element={<Review />}></Route>
           <Route path="/RecipeReviews" element={<RecipeReviews />}></Route>
-
 
           <Route path="/Step" element={<StepPage />} />
         </Route>

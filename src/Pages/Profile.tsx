@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import './Profile.css'; // Import the CSS file
+import "./Profile.css";
 import Navbar from "../components/Navbar";
 
 export function Profile() {
-
-
   return (
     <div className="profile-container">
       <img src="user-icon.png" alt="User Icon" className="profile-image" />
@@ -15,7 +13,6 @@ export function Profile() {
         <Link to="/Settings">Settings</Link>
       </div>
       <Navbar />
-
     </div>
   );
 }

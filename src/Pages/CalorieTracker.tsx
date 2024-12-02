@@ -36,7 +36,6 @@ export function CalorieTracker() {
 
         setRecipes(allRecipes);
 
-        // Calculate total calories for daily goal
         const totalCalories = allRecipes.reduce(
           (sum: number, recipe: Recipe) => sum + recipe.calories,
           0
@@ -56,7 +55,7 @@ export function CalorieTracker() {
         setLoading(false);
       }
     };
-    
+
     fetchData();
   }, []);
 
@@ -64,12 +63,10 @@ export function CalorieTracker() {
   if (error) return <p>Error: {error}</p>;
 
   const handleClick = (id: number) => {
-    
     localStorage.setItem("selectedRecipeId", id.toString());
 
-    // Redirect to the Recipe page
     navigate("/Recipe");
-  };  
+  };
 
   const updateWeeklyProgress = (newCalories: number) => {
     const updatedWeeklyProgress = weeklyProgress + newCalories;
@@ -78,49 +75,50 @@ export function CalorieTracker() {
   };
 
   const removeRecipe = (instanceId: string) => {
-    const recipeToRemove = recipes.find((recipe) => recipe.instanceId === instanceId);
+    const recipeToRemove = recipes.find(
+      (recipe) => recipe.instanceId === instanceId
+    );
     if (!recipeToRemove) return;
 
-    const updatedRecipes = recipes.filter((recipe) => recipe.instanceId !== instanceId);
+    const updatedRecipes = recipes.filter(
+      (recipe) => recipe.instanceId !== instanceId
+    );
 
     setRecipes(updatedRecipes);
 
     localStorage.setItem("trackedRecipes", JSON.stringify(updatedRecipes));
-  
+
     const totalCalories = updatedRecipes.reduce(
       (sum: number, recipe: Recipe) => sum + recipe.calories,
       0
     );
     setDailyGoal(totalCalories);
-    updateWeeklyProgress(-(recipeToRemove.calories));
+    updateWeeklyProgress(-recipeToRemove.calories);
   };
 
   return (
     <div>
       <div className="calories-tracker">
-        {/* Header */}
         <header className="back-container">
           <button onClick={() => navigate(-1)} className="back-button">
             ← Go back
           </button>
         </header>
 
-        {/* Calories Tracker */}
         <section className="calories-overview">
           <h1>Calories Tracker</h1>
           <p>This week Progress: {weeklyProgress}</p>
           <p>Last week Calories: 11,200</p>
         </section>
-        
-        {/* Daily Goal */}
+
         <section className="daily-goal">
           <p>
-            Daily Goal Progress: {dailyGoal}/{2000}
+            Daily Goal Progress: {dailyGoal}/{4000}
           </p>
           <div className="progress-bar">
             <div
               className="progress"
-              style={{ width: `${(dailyGoal / 2000) * 100}%` }}
+              style={{ width: `${(dailyGoal / 4000) * 100}%` }}
             ></div>
           </div>
         </section>
@@ -136,7 +134,7 @@ export function CalorieTracker() {
                   onClick={() => handleClick(recipe.id)}
                   style={{
                     backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 70%), url(${recipe.image})`,
-                    backgroundSize: "cover", 
+                    backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                   }}
@@ -149,13 +147,13 @@ export function CalorieTracker() {
                     <p>Rating: {recipe.rating}</p>
                   </div>
                   <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        removeRecipe(recipe.instanceId);
-                      }}
-                      className="remove-button"
-                    >
-                      Remove
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeRecipe(recipe.instanceId);
+                    }}
+                    className="remove-button"
+                  >
+                    Remove
                   </button>
                 </div>
               ))}
