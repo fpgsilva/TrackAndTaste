@@ -93,7 +93,7 @@ export function CalorieTracker() {
       0
     );
     setDailyGoal(totalCalories);
-    updateWeeklyProgress(-recipeToRemove.calories);
+    updateWeeklyProgress(-(recipeToRemove.calories));
   };
 
   return (
